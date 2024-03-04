@@ -1,18 +1,18 @@
 <main>
     <article class="article">
 
-      <!-- #HERO -->
-      <section class="section hero" aria-label="hero">
+    <!-- #HERO -->
+    <section class="section hero" aria-label="hero">
         <div class="container">
 
-          <div class="hero-bg">
+        <div class="hero-bg">
             <div class="hero-content">
 
-              <h1 class="h1 hero-title">
-                  Accommodation  for<span class="span">NSBM</span> Student
-              </h1>
+            <h1 class="h1 hero-title">
+                Accommodation  for<span class="span">NSBM</span> Student
+            </h1>
 
-              <p class="hero-text">
+            <p class="hero-text">
                 A great plateform to buy, sell and rent your properties without any agent or commisions.
               </p>
 
