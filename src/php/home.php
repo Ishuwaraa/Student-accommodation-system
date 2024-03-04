@@ -1,3 +1,7 @@
+<?php 
+include_once 'src/view/header.php';
+?>
+
 <main>
     <article class="article">
 
@@ -452,3 +456,8 @@
 
     </article>
   </main>
+
+  <?php 
+include_once 'src/view/footer.php';
+?>
+

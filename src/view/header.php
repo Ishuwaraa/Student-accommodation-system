@@ -10,7 +10,7 @@
   <!-- favicon -->
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
   <!-- custom css link -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="src/style/style.css">
   <!-- google font link -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
