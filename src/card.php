@@ -1,251 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./style/style.css">
-<title>Add a Post</title>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-    }
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-        color: #34CC33;
-    }
-    table {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    table-layout: fixed;
-}
-
-    label {
-        font-weight: bold;
-    }
-    .file-input-wrapper {
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-    }
-    .file-input-wrapper input[type="file"] {
-        font-size: 100px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-    }
-    input[type="text"],
-    input[type="tel"],
-    input[type="number"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        transition: border-color 0.3s ease;
-    }
-    input[type="text"]:focus,
-    input[type="tel"]:focus,
-    input[type="number"]:focus,
-    select:focus,
-    textarea:focus {
-        border-color: #FDC825;
-    }
-    input[type="submit"] {
-        background-color: #34CC33;
-        color: #fff;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-    
-        font-weight:500;
-        max-width: max-content;
-        padding: 12px 28px;
-    }
-    input[type="submit"]:hover {
-        background-color: #FDC825;
-    }
-    .image-preview {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .image-preview img {
-        width: 100px;
-        height: 100px;
-        max-width: 200px;
-        max-height: 200px;
-        margin-right: 10px;
-        margin-left: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    #photos1-container {
-    background-color: #bbbaba; /* Blue color */
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 0px;
-    margin-left: 100px;
-    }
-
-
-</style>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Details</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="house.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/76bfd3a54b.js" crossorigin="anonymous"></script>
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"rel="stylesheet">
+  </head>
 <body>
+<?php require('./view/header.php'); ?>
+   
+  <br>
+    
 
-<div class="container">
-    <h2>Add a Post</h2>
-    <form action="#" method="post" enctype="multipart/form-data">
+    <div class="house-details">
+      <br>
+      <br>
+      <br>
+      
+        <div class="gallery">
+            <div class="gallery-img-1"><img src="assets/images/property-3.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="assets/images/property-1.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="assets/images/property-2.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="assets/images/property-3.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="assets/images/property-4.jpg" onclick="showImage(this.src)"></div>
+        
+           
+        </div>
+        
+        <!-- The overlay container -->
+        <div id="overlay" class="overlay" onclick="hideImage()">
+            <img id="zoomed-image" src="" alt="Zoomed Image">
+        </div>
 
-        <table>
-            <tr>
-                <td><label for="photos">Images:</label></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="background-color: #bbbaba;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos1" name="photos[]" accept="image/*" multiple>
-                        <span class="file-input-label">Image 1</span>
-                        <div id="preview1" class="image-preview"></div>
-                    </div>
-                </td>
-                <td style="background-color: #bbbaba;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos2" name="photos[]" accept="image/*" multiple>
-                        <span class="file-input-label">Image 2</span>
-                        <div id="preview2" class="image-preview"></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color: #bbbaba;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos3" name="photos[]" accept="image/*" multiple>
-                        <span class="file-input-label">Image 3</span>
-                        <div id="preview3" class="image-preview"></div>
-                    </div>
-                </td>
-                <td style="background-color: #bbbaba;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos4" name="photos[]" accept="image/*" multiple>
-                        <span class="file-input-label">Image 4</span>
-                        <div id="preview4" class="image-preview"></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td style="background-color: #bbbaba;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos5" name="photos[]" accept="image/*" multiple>
-                        <span class="file-input-label">Image 5</span>
-                        <div id="preview5" class="image-preview"></div>
-                    </div>
-                </td>
-                <td style="background-color: #bbbaba;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos6" name="photos[]" accept="image/*" multiple>
-                        <span class="file-input-label">Image 6</span>
-                        <div id="preview6" class="image-preview"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+    
+        <hr class="line">
 
+        <ul class="details-list">
+            <li><ion-icon name="bed-outline"></ion-icon>
+                <span>You will have the entire flat for you.</span>
+            </li>
+            <li><i class="fas fa-paint-brush"></i>Enhanced Clean
+                <span>This host has committed to StayBnB's cleaning process.</span>
+            </li>
+            <li><i class="fas fa-map-marker-alt"></i>Great Location
+                <span>90% of recent guests gave the location a 5 star rating.</span>
+            </li>
+            <li><i class="fas fa-heart"></i>Great Check-in Experience
+                <span>100% of recent guests gave the check-in process a 5 star rating.</span>
+            </li>
+        </ul>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location"><br>
+        <hr class="line">
+        <h2>Description</h2>
+        <br>
 
-        <label for="beds">Beds:</label>
-        <input type="number" id="beds" name="beds"><br>
+        <p class="home-description">Guests will be allocated on the ground floor according to availability. You get a comfortable Two bedroom apartment that has a true city feeling. The price quoted is for two guests, at the guest list please mark the number of guest to get the exact price for groups. The guests will be allocated ground floor according to availability. You get the comfortable two bedroom apartment that has a true city feeling.</p>
 
-        <label for="category">Category:</label>
-        <select id="category" name="category">
-            <option value="f">Female</option>
-            <option value="m">Male</option>
-        </select><br>
+        <hr class="line">
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone"><br>
+        <div class="map">
+            <h3>Location on map</h3>
+            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3947.666983691001!2d80.41028307470498!3d8.335848991700383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMjAnMDkuMSJOIDgwwrAyNCc0Ni4zIkU!5e0!3m2!1sen!2slk!4v1707666774021!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    
+    </div>
 
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price"><br>
+        <!--#FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <ion-icon name="business-outline" style="color: #34CC33;"></ion-icon> Realvine
+          </a>
+          <p class="footer-text">
+            A great plateform to buy, sell and rent your properties without any agent or commisions.
+          </p>
+        </div>
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Company</p>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">About us</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Pricing</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Login</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Useful Links</p>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Terms of Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Privacy Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Listing</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-link">
+              <ion-icon name="chevron-forward" style="color: #34CC33;"></ion-icon>
+              <span class="span">Contact</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Contact Details</p>
+          </li>
+          <li class="footer-item">
+            <ion-icon name="location-outline"></ion-icon>
+            <address class="address">
+              Mahenwaththa, Pitipana,<br>
+              Homagama,<br>
+              Sri Lanka
+              <a href="#" class="address-link">View on Google map</a>
+            </address>
+          </li>
+          <li class="footer-item">
+            <ion-icon name="mail-outline"></ion-icon>
+            <a href="mailto:contact@example.com" class="footer-link">contact@example.com</a>
+          </li>
+          <li class="footer-item">
+            <ion-icon name="call-outline"></ion-icon>
+            <a href="tel:+152534468854" class="footer-link">+152 534-468-854</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">
+          &copy; 2024 Realvine. All Right Reserved by <a href="#" class="copyright-link">Accommodation</a>.
+        </p>
+        <ul class="social-list">
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+        <!-- #BACK TO TOP -->
+        <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+            <ion-icon name="arrow-up" aria-hidden="true"></ion-icon>
+        </a>
+        <!-- custom js link -->
+        <script src="./assets/js/script.js" defer></script>
+        <!-- ionicon link -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4"></textarea><br>
-
-        <input type="submit" value="Post Ad" class="btn btn-secondary">
-    </form>
-
-    <!-- Preview area for images -->
-    <div id="image-preview"></div>
-</div>
-
-<script>
-    // Change border color on input focus
-    const inputs = document.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            input.style.borderColor = '#FDC825';
-        });
-        input.addEventListener('blur', () => {
-            input.style.borderColor = '#ccc';
-        });
-    });
-
-    // Preview uploaded images and hide labels
-    const fileInputs = document.querySelectorAll('input[type="file"]');
-    fileInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            const files = this.files;
-            const previewId = this.id.replace('photos', 'preview');
-            const preview = document.getElementById(previewId);
-            const label = this.nextElementSibling; // Get the label element
-
-            preview.innerHTML = ''; // Clear previous preview
-            label.style.display = 'none'; // Hide the label
-
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const reader = new FileReader();
-
-                reader.onload = function(event) {
-                    const img = document.createElement('img');
-                    img.src = event.target.result;
-                    img.style.maxWidth = '200px';
-                    img.style.maxHeight = '200px';
-                    img.style.marginRight = '10px';
-                    img.style.marginBottom = '10px';
-                    preview.appendChild(img);
-                };
-
-                reader.readAsDataURL(file);
+        <script>
+            // Function to display the zoomed image
+            function showImage(src) {
+                var overlay = document.getElementById('overlay');
+                var zoomedImg = document.getElementById('zoomed-image');
+                zoomedImg.src = src;
+                overlay.style.display = 'flex';
             }
-        });
-    });
-</script>
-
-
-
+        
+            // Function to hide the zoomed image
+            function hideImage() {
+                var overlay = document.getElementById('overlay');
+                overlay.style.display = 'none';
+            }
+        </script>
 </body>
 </html>
