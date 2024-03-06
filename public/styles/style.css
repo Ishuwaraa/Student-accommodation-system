@@ -1,6 +1,12 @@
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
 :root {
 
-  /* colors */
+  /**
+   * colors
+   */
 
   --oxford-blue_60: hsla(224, 34%, 13%, 0.6);
   --green-pigment: #34CC33;
@@ -22,7 +28,9 @@
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);
 
-  /* typography */
+  /**
+   * typography
+   */
 
   --ff-spartan: 'League Spartan', sans-serif;
 
@@ -35,11 +43,15 @@
   --fw-600: 600;
   --fw-500: 500;
 
-  /* spacing */
+  /**
+   * spacing
+   */
 
   --section-padding: 35px;
 
-  /* shadow */
+  /**
+   * shadow
+   */
 
   --shadow-1: 0 1px 2px hsla(0, 0%, 0%, 0.2);
   --shadow-2: 0 10px 15px -5px var(--carcoal_20);
@@ -48,21 +60,31 @@
   --shadow-5: 0 20px 25px -5px var(--carcoal_10),
               0 10px 10px -5px var(--carcoal_10);
 
-  /* border radius */
+  /**
+   * border radius
+   */
 
   --radius-16: 16px;
   --radius-12: 12px;
   --radius-6: 6px;
   --radius-4: 4px;
 
-  /* transition */
+  /**
+   * transition
+   */
+
   --transition: 0.25s ease;
   --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
 
 }
 
-/* #RESET*/
 
+
+
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
 
 *,
 *::before,
@@ -123,8 +145,9 @@ body {
 
 
 
-/* REUSED STYLE */
-
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
 
 .container { padding-inline: 15px; }
 
@@ -136,7 +159,7 @@ body {
   padding: var(--padding, 12px 28px);
 }
 
-.btn:is(:hover, :focus) { background-color: var(--sea-green); }
+.btn:is(:hover, :focus) { background-color: #FFD149; }
 
 .btn-secondary { border-radius: 50px; }
 
@@ -177,7 +200,13 @@ body {
 
 .section-text { line-height: 1.6; }
 
-/* #HEADER */
+
+
+
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
 
 .header {
   background-color: var(--white);
@@ -263,7 +292,13 @@ body {
 
 .navbar-link:is(:hover, :focus) { color: var(--green-pigment); }
 
-/* #HERO */
+
+
+
+
+/*-----------------------------------*\
+  #HERO
+\*-----------------------------------*/
 
 .article { position: relative; }
 
@@ -383,7 +418,9 @@ body {
 .hero-form .btn { max-width: 100%; }
 
 
-/* #SERVICE */
+/*-----------------------------------*\
+  #SERVICE
+\*-----------------------------------*/
 
 .service :is(.section-title, .section-text) { text-align: center; }
 
@@ -420,7 +457,13 @@ body {
 
 
 
-/* #PROPERTY */
+/*-----------------------------------*\
+  #PROPERTY
+\*-----------------------------------*/
+.title-new{
+  display: flex; justify-content: space-between;
+align-items: center;
+}
 
 .property :is(.section-title, .section-text) { text-align: center; }
 
@@ -514,7 +557,16 @@ body {
   font-size: 16px;
 }
 
-/* #CONTACT */
+/*-----------------------------------*\
+  #PROPERTY END
+\*-----------------------------------*/
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT
+\*-----------------------------------*/
 
 .contact {
   padding-block-end: calc(var(--section-padding) * 2);
@@ -536,7 +588,9 @@ body {
 
 
 
-/* #FOOTER */
+/*-----------------------------------*\
+  #FOOTER
+\*-----------------------------------*/
 
 .footer {
   background-color: #002147;
@@ -578,7 +632,7 @@ body {
 
 .footer-link ion-icon { font-size: 14px; }
 
-.footer-link:is(:hover, :focus) { opacity: 0.8; }
+.footer-link:is(:hover, :focus) { color: #FDC800; }
 
 .footer-item {
   display: flex;
@@ -643,7 +697,9 @@ body {
 
 
 
-/* #BACK TO TOP */
+/*-----------------------------------*\
+  #BACK TO TOP
+\*-----------------------------------*/
 
 .back-top-btn {
   position: fixed;
@@ -666,13 +722,23 @@ body {
   transform: translateY(-10px);
 }
 
-/* #MEDIA QUERIES */
 
-/* responsive for larger than 640px screen */
+
+
+
+/*-----------------------------------*\
+  #MEDIA QUERIES
+\*-----------------------------------*/
+
+/**
+ * responsive for larger than 640px screen
+ */
 
 @media (min-width: 640px) {
 
-  /* REUSED STYLE */
+  /**
+   * REUSED STYLE
+   */
 
   .container {
     max-width: 640px;
@@ -682,7 +748,9 @@ body {
 
   
 
-  /* HERO */
+  /**
+   * HERO
+   */
 
   .hero .container { max-width: unset; }
 
@@ -705,7 +773,9 @@ body {
 
 
 
-  /* NEWSLETTER */
+  /** 
+   * NEWSLETTER
+   */
 
   .newsletter { width: calc(100% - 130px); }
 

@@ -27,11 +27,11 @@
       <br>
       
         <div class="gallery">
-            <div class="gallery-img-1"><img src="assets/images/property-3.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="assets/images/property-1.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="assets/images/property-2.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="assets/images/property-3.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="assets/images/property-4.jpg" onclick="showImage(this.src)"></div>
+            <div class="gallery-img-1"><img src="../../assets/images/property-1.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="../../assets/images/property-1.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="../../assets/images/property-2.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="../../assets/images/property-3.jpg" onclick="showImage(this.src)"></div>
+            <div><img src="../../assets/images/property-4.jpg" onclick="showImage(this.src)"></div>
         
            
         </div>
