@@ -120,6 +120,169 @@ class DbUtil {
         return $result;
     }
 
+    public static function getStudentDetails($id){
+        $conn = DbConnect::dbConnect();
+        $student = null;
+
+        try{
+            $sql = "select * from student where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result) > 0){
+                $row = mysqli_fetch_assoc($result);
+                $student = new Student();
+                $student->setId($row['id']);
+                $student->setName($row['name']);
+                $student->setEmail($row['email']);
+                $student->setContact($row['contact']);
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        
+        return $student;
+    }
+
+    public static function getLandlordDetails($id){
+        $conn = DbConnect::dbConnect();
+        $landlord = null;
+
+        try{
+            $sql = "select * from landlord where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result) > 0){
+                $row = mysqli_fetch_assoc($result);
+                $landlord = new Landlord();
+                $landlord->setId($row['id']);
+                $landlord->setName($row['name']);
+                $landlord->setEmail($row['email']);
+                $landlord->setContact($row['contact']);
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        
+        return $landlord;
+    }
+
+    public static function editStudentProfile($id, $name, $email, $contact){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "update student set name = '$name', email = '$email', contact = '$contact' where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function editLandlordProfile($id, $name, $email, $contact){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "update landlord set name = '$name', email = '$email', contact = '$contact' where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function editStudentPass($id, $newpass, $curpass){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "select * from student where id = '$id' and password = '$curpass'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result)>0){
+                $q = "update student set password = '$newpass' where id = '$id '";
+                $rs = mysqli_query($conn, $q);
+                if($rs){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later . $e');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function editLandlordPass($id, $newpass, $curpass){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "select * from landlord where id = '$id' and password = '$curpass'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result)>0){
+                $q = "update landlord set password = '$newpass' where id = '$id '";
+                $rs = mysqli_query($conn, $q);
+                if($rs){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function deleteStudentAcc($id, $curpass){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "select * from student where id = '$id' and password = '$curpass'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result)>0){
+                $q = "delete from student where id = '$id' ";
+                $rs = mysqli_query($conn, $q);
+                if($rs){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function deleteLandlordAcc($id, $curpass){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "select * from landlord where id = '$id' and password = '$curpass'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result)>0){
+                $q = "delete from landlord where id = '$id' ";
+                $rs = mysqli_query($conn, $q);
+                if($rs){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
 }
 
 ?>

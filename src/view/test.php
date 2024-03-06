@@ -1,12 +1,27 @@
 <?php
     session_start();
-    // require_once('../model/Student.php');
+    require_once('../model/Student.php');
+    require_once('../model/dbutil.php');
 
-    echo $_SESSION['user'] . " " . $_SESSION['user_type'] . " " . $_SESSION['user_id'];
+    // echo $_SESSION['user'] . " " . $_SESSION['user_type'] . " " . $_SESSION['user_id'];
 
     //if no sessions running redirect to login
     if(!isset($_SESSION['user'])){
         header('Location: login.php');
+    }else{
+        if($_SESSION['user_type'] == 'student'){
+            $student = DbUtil::getStudentDetails($_SESSION['user_id']);
+            echo "<br>id: " . $student->getId();
+            echo "<br>name: " . $student->getName();
+            echo "<br>email: " . $student->getEmail();
+            echo "<br>contact: " . $student->getContact();
+        }else{
+            $landlord = DbUtil::getLandlordDetails($_SESSION['user_id']);
+            echo "<br>id: " . $landlord->getId();
+            echo "<br>name: " . $landlord->getName();
+            echo "<br>email: " . $landlord->getEmail();
+            echo "<br>contact: " . $landlord->getContact();
+        }
     }
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -14,8 +29,7 @@
         header('Location: login.php');
     }
 
-    // $student = new Student();
-    // echo "<br>email: " .$student->getEmail();
+    
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +45,8 @@
         <input type="submit" value="logout" name="logout">
     </form>
     <h2>hello</h2>
+    <h6>todo: check if the user alr has an account when registering</h6>
+    <a href="index.php">index page</a>
     <!-- <php require('./view/footer.html'); ?> -->
 </body>
 </html>

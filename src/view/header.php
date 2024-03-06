@@ -4,7 +4,7 @@
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     session_destroy();
     // echo "<script>window.setTimeout(function(){window.location.href='./login.php'}, 300);</script>";
-    echo "<script>window.location.href='./login.php'</script>";
+    echo "<script>window.location.href='./index.php'</script>";
   }
 ?>
 
@@ -41,6 +41,9 @@
       <nav class="navbar container" data-navbar>
         <ul class="navbar-list">
           <li>
+            <a href="test.php" class="navbar-link" data-nav-link>Test</a>
+          </li>
+          <li>
             <a href="index.php" class="navbar-link" data-nav-link>Home</a>
           </li>
 
@@ -52,7 +55,7 @@
           
           <?php if(isset($_SESSION['user']) && ($_SESSION['user_type'] == 'student' || $_SESSION['user_type'] == 'landlord')){ ?>
             <li>
-              <a href="#" class="navbar-link" data-nav-link>Profile</a>
+              <a href="profile.php" class="navbar-link" data-nav-link>Profile</a>
             </li>
           <?php }?>
           
