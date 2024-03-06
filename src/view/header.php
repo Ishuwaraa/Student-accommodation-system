@@ -1,3 +1,13 @@
+<?php
+  session_start();
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    session_destroy();
+    // echo "<script>window.setTimeout(function(){window.location.href='./login.php'}, 300);</script>";
+    echo "<script>window.location.href='./login.php'</script>";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,25 +41,35 @@
       <nav class="navbar container" data-navbar>
         <ul class="navbar-list">
           <li>
-            <a href="#" class="navbar-link" data-nav-link>Home</a>
+            <a href="index.php" class="navbar-link" data-nav-link>Home</a>
           </li>
 
-          <li>
-            <a href="#" class="navbar-link" data-nav-link>Service</a>
-          </li>
-
+          <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'landlord'){ ?>
+            <li>
+              <a href="addpost.php" class="navbar-link" data-nav-link>Post your Ad</a>
+            </li>
+          <?php }?>
+          
+          <?php if(isset($_SESSION['user']) && ($_SESSION['user_type'] == 'student' || $_SESSION['user_type'] == 'landlord')){ ?>
+            <li>
+              <a href="#" class="navbar-link" data-nav-link>Profile</a>
+            </li>
+          <?php }?>
+          
           <li>
             <a href="#" class="navbar-link" data-nav-link>About Us</a>
           </li>
-
-          <li>
-            <a href="#" class="navbar-link" data-nav-link>Contact</a>
-          </li>
-
         </ul>
       </nav>
 
-      <a href="" class="btn btn-secondary">Signup</a>
+      <?php if(!isset($_SESSION['user'])){ ?>
+        <button onclick="window.location.href = 'login.php'" class="btn btn-secondary">Login</button>
+      <?php } else {?>
+        <form action="header.php" method="post">
+          <button type="submit" name="logout" class="btn btn-secondary">Logout</button>
+        </form>
+      <?php } ?>
+
 
       <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
         <ion-icon name="menu-outline" aria-hidden="true" class="menu-icon"></ion-icon>

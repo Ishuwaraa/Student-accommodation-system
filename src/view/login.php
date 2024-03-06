@@ -1,70 +1,5 @@
 <?php
-
     session_start();
-    include('database.php');
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $password = $_POST['password'];
-        $type = $_POST['acctype'];
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-
-        if($type == 'student'){
-            try{
-                $sql = "select * from student where email = '$email' and password = '$password'";
-                $result = mysqli_query($conn, $sql);
-
-                if(mysqli_num_rows($result)>0){
-                    $_SESSION['user'] = $email;
-                    $_SESSION['user_type'] = 'student';
-                    header('Location: test.php');
-                }else echo "<script>alert('Incorrect email or password')</script>";
-            }catch (mysqli_sql_exception){
-                echo "<script>alert('An error occurred. Try again later');</script>";
-            }
-        }elseif($type == 'landlord'){
-            try{
-                $sql = "select * from landlord where email = '$email' and password = '$password'";
-                $result = mysqli_query($conn, $sql);
-
-                if(mysqli_num_rows($result)>0){
-                    $_SESSION['user'] = $email;
-                    $_SESSION['user_type'] = 'landlord';
-                    header('Location: test.php');
-                }else echo "<script>alert('Incorrect email or password')</script>";
-            }catch (mysqli_sql_exception){
-                echo "<script>alert('An error occurred. Try again later');</script>";
-            }
-        }elseif($type == 'warden'){
-            try{
-                $sql = "select * from warden where email = '$email' and password = '$password'";
-                $result = mysqli_query($conn, $sql);
-
-                if(mysqli_num_rows($result)>0){
-                    $_SESSION['user'] = $email;
-                    $_SESSION['user_type'] = 'warden';
-                    header('Location: test.php');
-                }else echo "<script>alert('Incorrect email or password')</script>";
-            }catch (mysqli_sql_exception){
-                echo "<script>alert('An error occurred. Try again later');</script>";
-            }
-        }else{
-            try{
-                $sql = "select * from admin where email = '$email' and password = '$password'";
-                $result = mysqli_query($conn, $sql);
-
-                if(mysqli_num_rows($result)>0){
-                    $_SESSION['user'] = $email;
-                    $_SESSION['user_type'] = 'admin';
-                    header('Location: test.php');
-                }else echo "<script>alert('Incorrect email or password')</script>";
-            }catch (mysqli_sql_exception $e){
-                // echo "<script>alert('An error occurred. Try again later');</script>";
-                echo $e;
-            }
-        }
-
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -171,7 +106,7 @@
                 </div>
             </div>
             <div class="col-8 col-md-6">
-                <form action="login.php" method="post">
+                <form action="../controller/loginController.php" method="post">
                     <label for="phone" class="form-label">Account Type <span style="color: red">*</span></label>
                     <div class="input-group mb-3">
                         <div class="input-group">

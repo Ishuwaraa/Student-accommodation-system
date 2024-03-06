@@ -1,59 +1,3 @@
-<?php
-
-    session_start();
-    include('database.php');
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // $email = $_POST['email'];
-        // $name = $_POST['name'];
-        // $contact = $_POST['contact'];
-        $type = $_POST['acctype'];
-        $password = $_POST['password'];
-
-        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $contact = filter_input(INPUT_POST, 'contact', FILTER_SANITIZE_NUMBER_INT);
-
-        if($_POST['password'] == $_POST['conpassword']){
-
-            if($type == 'student'){
-                try{
-                    $sql = "insert into student (name, email, password, contact) values ('$name', '$email', '$password', '$contact')";
-                    $result = mysqli_query($conn, $sql);
-
-                    //since its an insert query it returns a boolean.
-                    if($result){
-                        $_SESSION['user'] = $email;
-                        $_SESSION['user_type'] = 'student';
-                        header("Location: test.php");
-                    }
-
-                }catch(mysqli_sql_exception){
-                    echo "<script>alert('An error occurred. Try again later');</script>";
-                }
-            }else{
-                try{
-                    $sql = "insert into landlord (name, email, password, contact) values ('$name', '$email', '$password', '$contact')";
-                    $result = mysqli_query($conn, $sql);
-
-                    if($result){
-                        $_SESSION['user'] = $email;
-                        $_SESSION['user_type'] = 'landlord';
-                        header("Location: test.php");
-                    }
-                }catch(mysqli_sql_exception){
-                    echo "<script>alert('An error occurred. Try again later');</script>";
-                }
-            }            
-        }else {
-            echo "<script>alert('Passwords do not match')</script>";
-        }
-
-        mysqli_close($conn);
-    }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,7 +83,7 @@
                 </div>
             </div>
             <div class="col-8 col-md-6">
-                <form action="register.php" method="post">
+                <form action="../controller/registerController.php" method="post">
                     <label for="name" class="form-label">Name <span style="color: red">*</span></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
@@ -160,7 +104,7 @@
                                 <option value="">Choose...</option>
                                 <option value="student">Student</option>
                                 <option value="landlord">Landlord</option>
-                                <!-- <option value="3">Three</option> -->
+                                <option value="warden">Warden</option>
                             </select>
                         </div>
                     </div>

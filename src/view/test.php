@@ -1,7 +1,8 @@
 <?php
     session_start();
+    // require_once('../model/Student.php');
 
-    // echo $_SESSION['user'] . " " . $_SESSION['user_type'];
+    echo $_SESSION['user'] . " " . $_SESSION['user_type'] . " " . $_SESSION['user_id'];
 
     //if no sessions running redirect to login
     if(!isset($_SESSION['user'])){
@@ -12,6 +13,9 @@
         session_destroy();
         header('Location: login.php');
     }
+
+    // $student = new Student();
+    // echo "<br>email: " .$student->getEmail();
 ?>
 
 <!DOCTYPE html>
