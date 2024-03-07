@@ -121,7 +121,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
 
 <div class="container">
     <h2>Post your Ad</h2>
-    <form action="#" method="post">
+    <form action="../controller/addPostController.php" method="post" enctype="multipart/form-data">
 
         <table>
             <tr>
@@ -132,7 +132,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos1" name="photos[]" accept="image/*" multiple>
+                        <input type="file" id="photos1" name="photos[]" accept="image/*">
                         <span class="file-input-label">click here to add</span>
                         <div id="preview1" class="image-preview"></div>
                     </div>
@@ -140,7 +140,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos2" name="photos[]" accept="image/*" multiple>
+                        <input type="file" id="photos2" name="photos[]" accept="image/*">
                         <span class="file-input-label">click here to add</span>
                         <div id="preview2" class="image-preview"></div>
                     </div>
@@ -150,7 +150,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos3" name="photos[]" accept="image/*" multiple>
+                        <input type="file" id="photos3" name="photos[]" accept="image/*">
                         <span class="file-input-label">click here to add</span>
                         <div id="preview3" class="image-preview"></div>
                     </div>
@@ -158,7 +158,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos4" name="photos[]" accept="image/*" multiple>
+                        <input type="file" id="photos4" name="photos[]" accept="image/*">
                         <span class="file-input-label">click here to add</span>
                         <div id="preview4" class="image-preview"></div>
                     </div>
@@ -171,7 +171,15 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         <input type="text" id="location" name="location" required><br>
 
         <label for="beds">Beds: <span style="color: red">*</span></label>
-        <input type="text" id="beds" name="beds" required><br>
+        <!-- <input type="text" id="beds" name="beds" required><br> -->
+        <select id="beds" name="beds" required>
+            <option value="">Select an option</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br>
 
         <label for="category">Category: <span style="color: red">*</span></label>
         <select id="category" name="category" required>
@@ -189,7 +197,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         <label for="description">Description: <span style="color: red">*</span></label>
         <textarea id="description" name="description" rows="5" required style="resize: none;"></textarea><br>
 
-        <input type="submit" value="Post my Ad" class="btn btn-secondary">
+        <input type="submit" value="Post my Ad" name="addpost" class="btn btn-secondary">
     </form>
 
     <!-- Preview area for images -->

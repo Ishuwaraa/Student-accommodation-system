@@ -283,6 +283,59 @@ class DbUtil {
         }
         return $isSuccess;
     }
+
+    public static function addPost($id, $bed, $category, $phone, $price, $description, $location){
+        $conn = DbConnect::dbConnect();
+        $foreignId = null;
+
+        try{
+            $sql = "insert into adpost values (0, '$bed', '$category', '$phone', '$price', '$description', '$location', 'pending', '$id')";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                // $row = mysqli_fetch_assoc($result);
+                // $foreignId = $row['id'];
+                $foreignId = mysqli_insert_id($conn);   //returns the id of an auto incremented row
+            }else $foreignId = null;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $foreignId;
+    }
+
+    public static function addImages($adId, $path){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "insert into ad_image values (0, '$adId', '$path') ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function deletePost($id){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "delete from adpost where id = '$id'";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
 }
 
 ?>

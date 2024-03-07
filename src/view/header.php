@@ -34,7 +34,7 @@
   <header class="header" data-header>
     <div class="container">
 
-      <a href="#" class="logo">
+      <a href="index.php" class="logo">
         <ion-icon name="business-outline"></ion-icon> Accommodation
       </a>
 

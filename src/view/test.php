@@ -4,6 +4,7 @@
     require_once('../model/dbutil.php');
 
     // echo $_SESSION['user'] . " " . $_SESSION['user_type'] . " " . $_SESSION['user_id'];
+    echo $_SESSION['user_type'] ;
 
     //if no sessions running redirect to login
     if(!isset($_SESSION['user'])){
