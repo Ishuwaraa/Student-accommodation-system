@@ -22,6 +22,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"rel="stylesheet">
   </head>
+  <style>
+     .details-list {
+    list-style: none;
+    padding: 0;
+}
+
+.details-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.details-list .icon-green {
+    color: #34CC33;
+    margin-right: 10px;
+}
+
+.line {
+    border: 1px solid #ccc;
+}
+
+h2 {
+    margin-top: 20px;
+}
+.icon-green {
+        font-size: 34px; /* Adjust the size as needed */
+    }
+
+#description {
+  height: 30vh; /* Set the height as a percentage of the viewport height */
+    border: none; /* Hide the border */
+    resize: none; /* Prevent resizing of the textarea */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 100%; /* Ensure the textarea takes up the full width */
+  }
+  </style>
 <body>
 <?php require('header.php'); ?>
    
@@ -52,31 +88,60 @@
         <div id="overlay" class="overlay" onclick="hideImage()">
             <img id="zoomed-image" src="" alt="Zoomed Image">
         </div>
+        <form action="">
+        <hr class="line">
+        <h2>  
+          <li>
+          <input type="text" placeholder="Great Location" id="location" name="location" style="margin-left: 5px;">
+        </li>
+      </h2>
 
+      <ul class="details-list">
+        <li>
+            <ion-icon class="icon-green" name="bed-outline"></ion-icon>
+            <label for="beds">Beds:</label>
+            <input type="text" placeholder=" Beds" id="beds" name="beds" style="margin-left: 5px;">
+        </li>
+        <li>
+            <ion-icon class="icon-green" name="man-outline"></ion-icon>
+            <label for="baths">Baths:</label>
+            <input type="text" placeholder="Baths " id="baths" name="baths" style="margin-left: 5px;">
+        </li>
+        <li>
+            <ion-icon class="icon-green" name="male-female-outline"></ion-icon>
+            <label for="category">Category:</label>
+            <input type="text" placeholder=" Male/Female" id="category" name="category" style="margin-left: 5px;">
+        </li>
+        <li>
+            <ion-icon class="icon-green" name="call-outline"></ion-icon>
+            <label for="contact">Contact:</label>
+            <input type="text" placeholder=" Phone Number" id="contact" name="contact" style="margin-left: 5px;">
+        </li>
+        <li>
+            <ion-icon class="icon-green" name="pricetag-outline"></ion-icon>
+            <label for="price">Price:</label>
+            <input type="text" placeholder=" Your Price Here" id="price" name="price" style="margin-left: 5px;">
+        </li>
+    </ul>
     
-        <hr class="line">
+      
+      <hr class="line">
+      <h2 style="color: black;">Description</h2>
+      <br>
+      <div style="position: relative;">
+        <textarea placeholder="Description" id="description" name="description"></textarea>
+     <br>
+     <br>
+     <br>
+     <br>
+     <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
+      <button style="margin-right: 5px;" class="btn btn-secondary"> Save Changes</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  
+      </div>
 
-        <ul class="details-list">
-            <li><ion-icon name="bed-outline"></ion-icon>
-                <span>You will have the entire flat for you.</span>
-            </li>
-            <li><i class="fas fa-paint-brush"></i>Enhanced Clean
-                <span>This host has committed to StayBnB's cleaning process.</span>
-            </li>
-            <li><i class="fas fa-map-marker-alt"></i>Great Location
-                <span>90% of recent guests gave the location a 5 star rating.</span>
-            </li>
-            <li><i class="fas fa-heart"></i>Great Check-in Experience
-                <span>100% of recent guests gave the check-in process a 5 star rating.</span>
-            </li>
-        </ul>
-
-        <hr class="line">
-        <h2>Description</h2>
-        <br>
-
-        <p class="home-description">Guests will be allocated on the ground floor according to availability. You get a comfortable Two bedroom apartment that has a true city feeling. The price quoted is for two guests, at the guest list please mark the number of guest to get the exact price for groups. The guests will be allocated ground floor according to availability. You get the comfortable two bedroom apartment that has a true city feeling.</p>
-
+    </form>
         <hr class="line">
 
         <div class="map">
