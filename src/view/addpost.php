@@ -97,7 +97,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
     }
     .image-preview img {
         width: 100px;
-        height: 100px;
+        height: auto;
         max-width: 200px;
         max-height: 200px;
         margin-right: 10px;
@@ -107,11 +107,8 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
     }
 
     #photos1-container {
-    background-color: #bbbaba; /* Blue color */
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 0px;
-    margin-left: 100px;
+
+    margin-left: 90px;
     }
 
 
@@ -123,46 +120,61 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
     <h2>Post your Ad</h2>
     <form action="../controller/addPostController.php" method="post" enctype="multipart/form-data">
 
-        <table>
+    <table>
             <tr>
                 <td><label for="photos">Upload images:</label></td>
                 <td></td>
             </tr>
             <tr>
-                <td style="background-color: #bbbaba;">
+                <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
                         <input type="file" id="photos1" name="photos[]" accept="image/*">
-                        <span class="file-input-label">click here to add</span>
+                        <span class="file-input-label" style="display: flex; margin-bottom: 20px; ">click here to add</span>
                         <div id="preview1" class="image-preview"></div>
                     </div>
                 </td>
-                <td style="background-color: #bbbaba;">
+                <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
                         <input type="file" id="photos2" name="photos[]" accept="image/*">
-                        <span class="file-input-label">click here to add</span>
+                        <span class="file-input-label" style="display: flex; margin-bottom: 20px; ">click here to add</span>
                         <div id="preview2" class="image-preview"></div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td style="background-color: #bbbaba;">
+                <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
                         <input type="file" id="photos3" name="photos[]" accept="image/*">
-                        <span class="file-input-label">click here to add</span>
+                        <span class="file-input-label" style="display: flex; margin-bottom: 20px; ">click here to add</span>
                         <div id="preview3" class="image-preview"></div>
                     </div>
                 </td>
-                <td style="background-color: #bbbaba;">
+                <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
                         <input type="file" id="photos4" name="photos[]" accept="image/*">
-                        <span class="file-input-label">click here to add</span>
+                        <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 0px;">click here to add</span>
                         <div id="preview4" class="image-preview"></div>
                     </div>
                 </td>
+            </tr>
+        </table>
+        <table style="margin-top: -44px;">
+            <tr>
+            </tr>
+            <tr>
+                <td style="background-color: #bbbaba; border-radius: 0.5rem;">
+                    <br>
+                    <div id="photos1-container" class="file-input-wrapper">
+                        <input type="file" id="photos5" name="photos[]" accept="image/*" multiple>
+                        <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 120px;">click here to add</span>
+                        <div id="preview5" class="image-preview"></div>
+                    </div>
+                </td>
+                
             </tr>
         </table>
 
