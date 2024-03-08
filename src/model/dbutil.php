@@ -5,6 +5,7 @@ require_once('../model/Student.php');
 require_once('../model/Landlord.php');
 require_once('../model/AdDetails.php');
 require_once('../model/ImagePaths.php');
+require_once('../model/Blog.php');
 
 class DbUtil {
 
@@ -390,6 +391,45 @@ class DbUtil {
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
         return $imagePaths;
+    }
+
+    public static function addBlog($title, $description, $image){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "insert into admin_blog values (0, '$title', '$description', '$image') ";
+            $result = mysqli_query($conn, $sql);
+            if($result) $isSuccess = true;
+            else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function getBlog(){
+        $conn = DbConnect::dbConnect();
+        $blogs = [];
+
+        try{
+            $sql = "select * from admin_blog";
+            $result = mysqli_query($conn, $sql);
+            
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $blog = new Blog();
+                    $blog->setTitle($row['title']);
+                    $blog->setDescription($row['description']);
+                    $blog->setImage($row['image']);
+
+                    $blogs[] = $blog;
+                }
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $blogs;
     }
 }
 
