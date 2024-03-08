@@ -382,10 +382,10 @@ function showPopupNotification() {
           var openDropdown = dropdowns[i];
           if (openDropdown.style.display === "block") {
             openDropdown.style.display = "none";
-          }
         }
-      }
+        }
     }
-  </script>
+    }
+</script>
 </body>
 </html>
