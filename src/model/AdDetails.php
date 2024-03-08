@@ -10,6 +10,7 @@
         public $description;
         public $location;
         public $status;
+        public $landlord;
 
         public function __construct(){}
 
@@ -40,6 +41,9 @@
         public function setStaus($status){
             $this->status = $status;
         }
+        public function setLandlord($landlord){
+            $this->landlord = $landlord;
+        }
         
         public function getId(){
             return $this->id;
@@ -67,6 +71,9 @@
         }
         public function getStatus(){
             return $this->status;
+        }
+        public function getLandlord(){
+            return $this->landlord;
         }
     }
 ?>

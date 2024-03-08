@@ -129,7 +129,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos1" name="photos[]" accept="image/*">
+                        <input type="file" id="photos1" name="photos[]" accept="image/*" required>
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; ">click here to add</span>
                         <div id="preview1" class="image-preview"></div>
                     </div>
@@ -137,7 +137,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos2" name="photos[]" accept="image/*">
+                        <input type="file" id="photos2" name="photos[]" accept="image/*" required>
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; ">click here to add</span>
                         <div id="preview2" class="image-preview"></div>
                     </div>
@@ -147,7 +147,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos3" name="photos[]" accept="image/*">
+                        <input type="file" id="photos3" name="photos[]" accept="image/*" required>
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; ">click here to add</span>
                         <div id="preview3" class="image-preview"></div>
                     </div>
@@ -155,21 +155,21 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos4" name="photos[]" accept="image/*">
+                        <input type="file" id="photos4" name="photos[]" accept="image/*" required>
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 0px;">click here to add</span>
                         <div id="preview4" class="image-preview"></div>
                     </div>
                 </td>
             </tr>
         </table>
-        <table style="margin-top: -44px;">
+        <table style="margin-top: -42px;">
             <tr>
             </tr>
             <tr>
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos5" name="photos[]" accept="image/*" multiple>
+                        <input type="file" id="photos5" name="photos[]" accept="image/*" required>
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 120px;">click here to add</span>
                         <div id="preview5" class="image-preview"></div>
                     </div>

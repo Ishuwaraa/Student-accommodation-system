@@ -44,6 +44,9 @@
             <a href="test.php" class="navbar-link" data-nav-link>Test</a>
           </li>
           <li>
+            <a href="testcard.php" class="navbar-link" data-nav-link>Testcards</a>
+          </li>
+          <li>
             <a href="index.php" class="navbar-link" data-nav-link>Home</a>
           </li>
 

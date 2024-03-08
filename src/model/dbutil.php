@@ -6,6 +6,7 @@ require_once('../model/Landlord.php');
 require_once('../model/AdDetails.php');
 require_once('../model/ImagePaths.php');
 require_once('../model/Blog.php');
+require_once('../model/StudentRequests.php');
 
 class DbUtil {
 
@@ -430,6 +431,144 @@ class DbUtil {
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
         return $blogs;
+    }
+
+    public static function wardenApproval($id, $status){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "update adpost set status = '$status' where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function getAllPosts(){
+        $conn = DbConnect::dbConnect();
+        $posts = [];
+
+        try{
+            $sql = "select * from adpost";
+            $result = mysqli_query($conn, $sql);
+
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $post = new AdDetails();
+                    $post->setId($row['id']);
+                    $post->setBed($row['bed']);
+                    $post->setBath($row['baths']);
+                    $post->setCategory($row['category']);
+                    $post->setPhone($row['phone']);
+                    $post->setPrice($row['price']);
+                    $post->setDescription($row['description']);
+                    $post->setLocation($row['location']);
+                    $post->setStaus($row['status']);
+                    $post->setLandlord($row['landlord_id']);
+
+                    $posts[] = $post;   //adding each row to the array
+                }
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $posts;
+    }
+
+    public static function getApprovedPosts(){
+        $conn = DbConnect::dbConnect();
+        $posts = [];
+
+        try{
+            $sql = "select * from adpost where status = 'approved' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $post = new AdDetails();
+                    $post->setId($row['id']);
+                    $post->setBed($row['bed']);
+                    $post->setBath($row['baths']);
+                    $post->setCategory($row['category']);
+                    $post->setPhone($row['phone']);
+                    $post->setPrice($row['price']);
+                    $post->setDescription($row['description']);
+                    $post->setLocation($row['location']);
+                    $post->setStaus($row['status']);
+                    $post->setLandlord($row['landlord_id']);
+
+                    $posts[] = $post;   //adding each row to the array
+                }
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $posts;
+    }
+
+    public static function addStudentRequest($ad_id, $std_id, $landlord_id, $std_name, $std_contact){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "insert into student_request values (0, '$std_id', '$ad_id', '$landlord_id', '$std_name', '$std_contact', 'pending') ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function getStudentRequest($landlord_id){
+        $conn = DbConnect::dbConnect();
+        $stdRequests = [];
+
+        try{
+            $sql = "select * from student_request where landlord_id = '$landlord_id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $stdRequest = new StudentRequest();
+                    $stdRequest->setId($row['id']);
+                    $stdRequest->setAdId($row['ad_id']);
+                    $stdRequest->setStdName($row['name']);
+                    $stdRequest->setStdContact($row['contact']);
+                    $stdRequest->setStatus($row['status']);
+
+                    $stdRequests[] = $stdRequest;   //adding each row to the array
+                }
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $stdRequests;
+    }
+
+    public static function updateStdRequest($id, $status){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "update student_request set status = '$status' where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result) $isSuccess = true;
+            else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
     }
 }
 
