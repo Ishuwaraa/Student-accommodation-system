@@ -168,6 +168,46 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
      .dropdown-right .dropdown-content {
         right: 0; /* Align dropdown content to the right */
     }
+    .requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px; /* Adding rounded corners to the table */
+    overflow: hidden; /* Ensure that the border-radius is applied properly */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow effect */
+}
+
+.requests-table th, .requests-table td {
+    padding: 8px;
+    border: none; /* Remove border from table cells */
+}
+
+.requests-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Add border only to table headers */
+}
+
+.approve-btn, .reject-btn {
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.approve-btn {
+    background-color: #34CC33;
+    color: white;
+    width: 90px;
+    border-radius: 10rem;
+}
+
+.reject-btn {
+    background-color: #f44336;
+    color: white;
+    margin-top: 5px;
+    width: 90px;
+    border-radius: 10rem;
+}
+
 
 
 
@@ -247,6 +287,44 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
             <button class="btn btn-secondary change-btn" type="submit" name="deleteacc">Delete Account</button>
         </form>
     </div>
+</div>
+
+<div class="cart-container" style="margin-top: -50px;">
+    <h2 class="cart-heading" style="color: black;">Student Requests</h2>
+    <table class="requests-table">
+        <thead>
+            <tr>
+                <th>Ads ID</th>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ADS123</td>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>123-456-7890</td>
+                <td>
+                    <button class="approve-btn">Approve</button>
+                    <button class="reject-btn">Reject</button>
+                </td>
+            </tr>
+            <tr>
+                <td>ADS123</td>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>123-456-7890</td>
+                <td>
+                    <button class="approve-btn">Approve</button>
+                    <button class="reject-btn">Reject</button>
+                </td>
+            </tr>
+            <!-- Add more rows for additional requests -->
+        </tbody>
+    </table>
 </div>
 
 <?php if($_SESSION['user_type'] == 'landlord') {?>
