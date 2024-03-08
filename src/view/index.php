@@ -1,3 +1,9 @@
+<?php
+
+  require_once('../model/dbutil.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +28,7 @@
 
 <body id="top">
 
-<?php require('header.php'); ?>
+<?php include_once('header.php'); ?>
   
   <main>
     <article class="article">
@@ -30,141 +36,108 @@
       <!-- #HERO -->
       <section class="section hero" aria-label="hero">
         <div class="container">
-
           <div class="hero-bg">
             <div class="hero-content">
-
-              <h1 class="h1 hero-title">
-                  Accommodation  for <span class="span"> NSBM  </span> Student
-              </h1>
-
+              <h1 class="h1 hero-title">Accommodation  for <span class="span"> NSBM  </span> Student</h1>
               <p class="hero-text">
                 A great plateform to buy, sell and rent your properties without any agent or commisions.
               </p>
-
             </div>
           </div>
         </div>
       </section>
 
-        <!--  #SERVICE -->
-
-        <section class="section service" aria-label="service">
-          <div class="container">
-  
-            <h2 class="h2 section-title">How It Works</h2>
-  
-            <p class="section-text">
-              A great plateform to buy, sell and rent your properties without any agent or commisions.
-            </p>
-  
-            <ul class="service-list">
-  
-              <li>
-                <div class="service-card">
-  
-                  <div class="card-icon">
-                    <ion-icon name="home-outline"></ion-icon>
-                  </div>
-  
-                  <h3 class="h3 card-title">Evaluate Property</h3>
-  
-                  <p class="card-text">
-                    If the distribution of letters and 'words' is random, the reader will not be distracted from making.
-                  </p>
-  
+      <!--  #SERVICE -->
+      <section class="section service" aria-label="service">
+        <div class="container">
+          <h2 class="h2 section-title">How It Works</h2>
+          <p class="section-text">
+            A great plateform to buy, sell and rent your properties without any agent or commisions.
+          </p>
+          <ul class="service-list">
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="home-outline"></ion-icon>
                 </div>
-              </li>
-  
-              <li>
-                <div class="service-card">
-  
-                  <div class="card-icon">
-                    <ion-icon name="briefcase-outline"></ion-icon>
-                  </div>
-  
-                  <h3 class="h3 card-title">Meeting with Agent</h3>
-  
-                  <p class="card-text">
-                    If the distribution of letters and 'words' is random, the reader will not be distracted from making.
-                  </p>
-  
-                </div>
-              </li>
-  
-              <li>
-                <div class="service-card">
-  
-                  <div class="card-icon">
-                    <ion-icon name="key"></ion-icon>
-                  </div>
-  
-                  <h3 class="h3 card-title">Close the Deal</h3>
-  
-                  <p class="card-text">
-                    If the distribution of letters and 'words' is random, the reader will not be distracted from making.
-                  </p>
-  
-                </div>
-              </li>
-  
-            </ul>
-  
-          </div>
-        </section>
-        <br>
-     
-        <section>
-          <div class="about-section">
-            <div class="inner-container">
-                <h1>About Us</h1>
-                <p class="text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+                <h3 class="h3 card-title">Evaluate Property</h3>
+                <p class="card-text">
+                  If the distribution of letters and 'words' is random, the reader will not be distracted from making.
                 </p>
-            </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="briefcase-outline"></ion-icon>
+                </div>
+                <h3 class="h3 card-title">Meeting with Agent</h3>
+                <p class="card-text">
+                  If the distribution of letters and 'words' is random, the reader will not be distracted from making.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="key"></ion-icon>
+                </div>
+                <h3 class="h3 card-title">Close the Deal</h3>
+                <p class="card-text">
+                  If the distribution of letters and 'words' is random, the reader will not be distracted from making.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+
         </div>
-        </section>
+      </section>
+      <br>
+     
+      <section>
+        <div class="about-section">
+          <div class="inner-container">
+              <h1>About Us</h1>
+              <p class="text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+              </p>
+          </div>
+      </div>
+      </section>
 
       <section class="property" id="property">
         <div class="container">
-
           <h2 class="h2 section-title">Blog Posts</h2>
         </div>
       </section>
 
       <section>
         <div class="post container">
-          <!-- Post 1 -->
-          <div class="post-box food">
-            <img src="property-1.jpg" alt="" class="post-img">
-            <br>
-            <a href="#" class="post-title">How to create the best UI with Figma</a>
-            <span class="post-date">12 Feb 2022</span>
-            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
-          
+
+          <?php 
+            $blogs = DbUtil::getBlog();
+
+            foreach($blogs as $blog){
+          ?>
+            <!-- Post 1 -->
+            <div class="post-box food">
+              <img src="../../assets/blogimages/<?php echo $blog->image?>" alt="" class="post-img">
+              <br>
+              <p class="post-title"><?php echo $blog->title ?></p>
+              <!-- <span class="post-date">12 Feb 2022</span> -->
+              <p class="post-description"><?php echo $blog->description ?></p>          
+            </div>
+          <?php } ?>   
+
         </div>
-        <!-- Post 2 -->
-        <div class="post-box food">
-            <img src="property-2.jpg" alt="" class="post-img">
-            <br>
-            <a href="#" class="post-title">How to create the best UI with Figma</a>
-            <span class="post-date">12 Feb 2022</span>
-            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
-          
-        </div>
-        <!-- Post 3 -->
-        <div class="post-box food">
-          <img src="property-3.jpg" alt="" class="post-img">
-          <br>
-          <a href="#" class="post-title">How to create the best UI with Figma</a>
-          <span class="post-date">12 Feb 2022</span>
-          <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
-        </div>
-        
-      </div>
       </section>
 
-      <?php include_once('footer.html') ?>
+    </article>
+  </main>
+<?php include_once('footer.html') ?>
 
   <!-- custom js link -->
   <script src="./assets/js/script.js" defer></script>

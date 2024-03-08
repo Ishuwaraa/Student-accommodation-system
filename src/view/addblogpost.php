@@ -1,3 +1,18 @@
+<?php
+
+    session_start();
+    require_once('../model/dbutil.php');
+
+    if(isset($_SESSION['user'])){
+        if($_SESSION['user_type'] !== 'admin'){
+            header('Location: login.php');
+        }
+    }else{
+        header('Location: login.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +38,12 @@
         color: #34CC33;
     }
     table {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    table-layout: fixed;
-}
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        table-layout: fixed;
+    }
 
     label {
         font-weight: bold;
@@ -111,7 +126,7 @@
 
 <div class="container">
     <h2>Add Blog Post</h2>
-    <form action="#" method="post">
+    <form action="../controller/addBlogController.php" method="post" enctype="multipart/form-data">
 
         <table>
             <tr>
@@ -121,7 +136,7 @@
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos1" name="photos[]" accept="image/*" multiple>
+                        <input type="file" id="photos1" name="blogimage" accept="image/*">
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 100px;">click here to add</span>
                         <div id="preview1" class="image-preview"></div>
                     </div>
@@ -134,8 +149,8 @@
         
         <label for="description">Description: <span style="color: red">*</span></label>
         <textarea id="description" name="description" rows="5" required style="resize: none;"></textarea><br>
-    <input type="submit" value="Post Blog" class="btn btn-secondary">
-</form>
+        <input type="submit" value="Post Blog" name="postblog" class="btn btn-secondary">
+    </form>
 
     <!-- Preview area for images -->
     <div id="image-preview"></div>

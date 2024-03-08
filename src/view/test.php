@@ -16,7 +16,7 @@
             echo "<br>name: " . $student->getName();
             echo "<br>email: " . $student->getEmail();
             echo "<br>contact: " . $student->getContact();
-        }else{
+        }elseif($_SESSION['user_type'] == 'landlord'){
             $landlord = DbUtil::getLandlordDetails($_SESSION['user_id']);
             echo "<br>id: " . $landlord->getId();
             echo "<br>name: " . $landlord->getName();

@@ -55,7 +55,7 @@
 
           <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin'){ ?>
             <li>
-              <a href="#" class="navbar-link" data-nav-link>Add a blog</a>
+              <a href="addblogpost.php" class="navbar-link" data-nav-link>Add a blog</a>
             </li>
           <?php }?>
           
