@@ -3,6 +3,8 @@
 require_once('../model/dbconnect.php');
 require_once('../model/Student.php');
 require_once('../model/Landlord.php');
+require_once('../model/AdDetails.php');
+require_once('../model/ImagePaths.php');
 
 class DbUtil {
 
@@ -284,12 +286,12 @@ class DbUtil {
         return $isSuccess;
     }
 
-    public static function addPost($id, $bed, $category, $phone, $price, $description, $location){
+    public static function addPost($id, $bed, $baths, $category, $phone, $price, $description, $location){
         $conn = DbConnect::dbConnect();
         $foreignId = null;
 
         try{
-            $sql = "insert into adpost values (0, '$bed', '$category', '$phone', '$price', '$description', '$location', 'pending', '$id')";
+            $sql = "insert into adpost values (0, '$bed', '$baths', '$category', '$phone', '$price', '$description', '$location', 'pending', '$id')";
             $result = mysqli_query($conn, $sql);
 
             if($result){
@@ -335,6 +337,59 @@ class DbUtil {
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
         return $isSuccess;
+    }
+
+    public static function getPost($landlordid){
+        $conn = DbConnect::dbConnect();
+        $adDetails = [];
+
+        try{
+            $sql = "select * from adpost where landlord_id = '$landlordid' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $adDetail = new AdDetails();
+                    $adDetail->setId($row['id']);
+                    $adDetail->setBed($row['bed']);
+                    $adDetail->setBath($row['baths']);
+                    $adDetail->setCategory($row['category']);
+                    $adDetail->setPhone($row['phone']);
+                    $adDetail->setPrice($row['price']);
+                    $adDetail->setDescription($row['description']);
+                    $adDetail->setLocation($row['location']);
+                    $adDetail->setStaus($row['status']);
+
+                    $adDetails[] = $adDetail;   //adding each row to the array
+                }
+            }
+        } catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+
+        return $adDetails;
+    }
+
+    public static function getImagePath($adId){
+        $conn = DbConnect::dbConnect();
+        $imagePaths = [];
+
+        try{
+            $sql = "select * from ad_image where ad_id = '$adId' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $imagePath = new ImagePaths();
+                    $imagePath->setImage($row['image_path']);
+
+                    $imagePaths[] = $imagePath;
+                }
+            }
+        } catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $imagePaths;
     }
 }
 

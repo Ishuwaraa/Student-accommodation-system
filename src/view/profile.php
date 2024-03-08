@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+    session_start(); 
     require_once('../model/dbutil.php');
 
     if(!(isset($_SESSION['user']) && ($_SESSION['user_type'] == 'student' || $_SESSION['user_type'] == 'landlord'))){
@@ -256,129 +256,60 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <section class="property" id="property">
         <div class="container">
             <ul class="property-list has-scrollbar" style="overflow-x: auto;">
-                <!--Card 1-->
-                <li>
-                    <div class="property-card"  style="background-color: #ebf9eb;">
-                        <div class="dropdown dropdown-right" style="margin-left: 290px;">
-                            <button class="dropbtn">...</button>
-                            <div class="dropdown-content">
-                                <a href="#">Edit Post</a>
-                                <a href="#">Delete Post</a>
-                            </div>
-                        </div>
-                        <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                            <img src="view/images/property-1.jpg" width="800" height="533" loading="lazy"
-                            alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
-                        </figure>
-                        <div class="card-content">
-                            <h3 class="h3">
-                                <a href="#" class="card-title">10765 Hillshire Ave, Baton Rouge, LA 70810, USA</a>
-                            </h3>
-                            <ul class="card-list">
-                                <li class="card-item">
-                                    <div class="item-icon">
-                                        <ion-icon name="bed-outline"></ion-icon>
+
+                <?php
+                    $adDetails = DbUtil::getPost($_SESSION['user_id']);
+
+                    foreach($adDetails as $adDetail){
+                ?>
+                        <!--Card 1-->
+                        <li>
+                            <div class="property-card"  style="background-color: #ebf9eb;">
+                                <div class="dropdown dropdown-right" style="margin-left: 290px;">
+                                    <button class="dropbtn">...</button>
+                                    <div class="dropdown-content">
+                                        <a href="card.php?id=<?php echo $adDetail->id?>">Edit Post</a>
+                                        <a href="#">Delete Post</a>
                                     </div>
-                                    <span class="item-text">4 Beds</span>
-                                </li>
-                                <li class="card-item">
-                                    <div class="item-icon">
-                                        <ion-icon name="man-outline"></ion-icon>
+                                </div>
+                                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
+                                    <img src="view/images/property-1.jpg" width="800" height="533" loading="lazy"
+                                    alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
+                                </figure>
+                                <div class="card-content">
+                                    <h3 class="h3">
+                                        <a href="#" class="card-title"><?php echo $adDetail->location?></a>
+                                    </h3>
+                                    <ul class="card-list">
+                                        <li class="card-item">
+                                            <div class="item-icon">
+                                                <ion-icon name="bed-outline"></ion-icon>
+                                            </div>
+                                            <span class="item-text"><?php echo $adDetail->bed?> Beds</span>
+                                        </li>
+                                        <li class="card-item">
+                                            <div class="item-icon">
+                                                <ion-icon name="man-outline"></ion-icon>
+                                            </div>
+                                            <span class="item-text"><?php echo $adDetail->bath?> Baths</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card-meta">
+                                        <div>
+                                            <span class="meta-title">Price</span>
+                                            <span class="meta-text">Rs.<?php echo $adDetail->price?></span><br>
+                                            <span class="meta-title">Status</span>
+                                            <span class="meta-text"><?php echo $adDetail->status?></span>
+                                            <input type="text" value="<?php echo $adDetail->id?>" style="display: none" name="adId">
+                                        </div>
                                     </div>
-                                    <span class="item-text">4 Baths</span>
-                                </li>
-                            </ul>
-                            <div class="card-meta">
-                                <div>
-                                    <span class="meta-title">Price</span>
-                                    <span class="meta-text">$5000</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <!--Card 2-->
-                <li>
-                    <div class="property-card">
-                        <div class="dropdown dropdown-right" style="margin-left: 290px;">
-                            <button class="dropbtn">...</button>
-                            <div class="dropdown-content">
-                                <a href="#">Edit Post</a>
-                                <a href="#">Delete Post</a>
-                            </div>
-                        </div>
-                        <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                            <img src="view/images/property-1.jpg" width="800" height="533" loading="lazy"
-                            alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
-                        </figure>
-                        <div class="card-content">
-                            <h3 class="h3">
-                                <a href="#" class="card-title">10765 Hillshire Ave, Baton Rouge, LA 70810, USA</a>
-                            </h3>
-                            <ul class="card-list">
-                                <li class="card-item">
-                                    <div class="item-icon">
-                                        <ion-icon name="bed-outline"></ion-icon>
-                                    </div>
-                                    <span class="item-text">4 Beds</span>
-                                </li>
-                                <li class="card-item">
-                                    <div class="item-icon">
-                                        <ion-icon name="man-outline"></ion-icon>
-                                    </div>
-                                    <span class="item-text">4 Baths</span>
-                                </li>
-                            </ul>
-                            <div class="card-meta">
-                                <div>
-                                    <span class="meta-title">Price</span>
-                                    <span class="meta-text">$5000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <!--Card 3-->
-                <li>
-                    <div class="property-card">
-                        <div class="dropdown dropdown-right" style="margin-left: 290px;">
-                            <button class="dropbtn">...</button>
-                            <div class="dropdown-content">
-                                <a href="#">Edit Post</a>
-                                <a href="#">Delete Post</a>
-                            </div>
-                        </div>
-                        <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                            <img src="view/images/property-1.jpg" width="800" height="533" loading="lazy"
-                            alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
-                        </figure>
-                        <div class="card-content">
-                            <h3 class="h3">
-                                <a href="#" class="card-title">10765 Hillshire Ave, Baton Rouge, LA 70810, USA</a>
-                            </h3>
-                            <ul class="card-list">
-                                <li class="card-item">
-                                    <div class="item-icon">
-                                        <ion-icon name="bed-outline"></ion-icon>
-                                    </div>
-                                    <span class="item-text">4 Beds</span>
-                                </li>
-                                <li class="card-item">
-                                    <div class="item-icon">
-                                        <ion-icon name="man-outline"></ion-icon>
-                                    </div>
-                                    <span class="item-text">4 Baths</span>
-                                </li>
-                            </ul>
-                            <div class="card-meta">
-                                <div>
-                                    <span class="meta-title">Price</span>
-                                    <span class="meta-text">$5000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                        </li>
+                <?php
+                    }
+                ?>
+                
                 <br>
             </ul>
         </div>

@@ -171,7 +171,6 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         <input type="text" id="location" name="location" required><br>
 
         <label for="beds">Beds: <span style="color: red">*</span></label>
-        <!-- <input type="text" id="beds" name="beds" required><br> -->
         <select id="beds" name="beds" required>
             <option value="">Select an option</option>
             <option value="1">1</option>
@@ -179,6 +178,14 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+        </select><br>
+
+        <label for="baths">Baths: <span style="color: red">*</span></label>
+        <select id="baths" name="baths" required>
+            <option value="">Select an option</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select><br>
 
         <label for="category">Category: <span style="color: red">*</span></label>

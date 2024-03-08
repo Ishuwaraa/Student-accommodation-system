@@ -52,6 +52,12 @@
               <a href="addpost.php" class="navbar-link" data-nav-link>Post your Ad</a>
             </li>
           <?php }?>
+
+          <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin'){ ?>
+            <li>
+              <a href="#" class="navbar-link" data-nav-link>Add a blog</a>
+            </li>
+          <?php }?>
           
           <?php if(isset($_SESSION['user']) && ($_SESSION['user_type'] == 'student' || $_SESSION['user_type'] == 'landlord')){ ?>
             <li>

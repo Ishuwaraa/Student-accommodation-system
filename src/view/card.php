@@ -1,3 +1,10 @@
+<?php
+
+  require_once('../model/dbutil.php');
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,13 +34,18 @@
       <br>
       
         <div class="gallery">
-            <div class="gallery-img-1"><img src="../../assets/images/property-1.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="../../assets/images/property-1.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="../../assets/images/property-2.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="../../assets/images/property-3.jpg" onclick="showImage(this.src)"></div>
-            <div><img src="../../assets/images/property-4.jpg" onclick="showImage(this.src)"></div>
-        
-           
+          <!-- not set in the db yet -->
+          <!-- <div class="gallery-img-1"><img src="../../assets/images/property-1.jpg" onclick="showImage(this.src)"></div> -->
+
+          <?php
+            if(isset($_GET['id'])) {
+              $id = $_GET['id'];
+              $imagePaths = DbUtil::getImagePath($id);
+
+              foreach($imagePaths as $imagePath){
+          ?>
+            <div><img src="../../assets/images/<?php echo $imagePath->image ?>" onclick="showImage(this.src)"></div>
+          <?php }} ?>
         </div>
         
         <!-- The overlay container -->

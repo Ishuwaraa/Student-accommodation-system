@@ -6,6 +6,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $location = $_POST['location'];
         $beds = $_POST['beds'];
+        $baths = $_POST['baths'];
         $category = $_POST['category'];
         $phone = $_POST['phone'];
         $price = $_POST['price'];
@@ -19,7 +20,7 @@
         $fileUploadSuccess = false;
 
         //inserting form details
-        $foreignId = DbUtil::addPost($_SESSION['user_id'], $beds, $category, $phone, $price, $description, $location);
+        $foreignId = DbUtil::addPost($_SESSION['user_id'], $beds, $baths, $category, $phone, $price, $description, $location);
 
         //inserting images
         if($foreignId !== null){
