@@ -136,7 +136,7 @@
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
                     <br>
                     <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos1" name="blogimage" accept="image/*">
+                        <input type="file" id="photos1" name="blogimage" accept="image/*" required>
                         <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 100px;">click here to add</span>
                         <div id="preview1" class="image-preview"></div>
                     </div>

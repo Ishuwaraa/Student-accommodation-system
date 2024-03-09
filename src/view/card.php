@@ -1,7 +1,7 @@
 <?php
 
+  session_start();
   require_once('../model/dbutil.php');
-
 
 ?>
 
@@ -23,40 +23,40 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"rel="stylesheet">
   </head>
   <style>
-     .details-list {
-    list-style: none;
-    padding: 0;
-}
-
-.details-list li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.details-list .icon-green {
-    color: #34CC33;
-    margin-right: 10px;
-}
-
-.line {
-    border: 1px solid #ccc;
-}
-
-h2 {
-    margin-top: 20px;
-}
-.icon-green {
-        font-size: 34px; /* Adjust the size as needed */
+    .details-list {
+        list-style: none;
+        padding: 0;
     }
 
-#description {
-  height: 30vh; /* Set the height as a percentage of the viewport height */
-    border: none; /* Hide the border */
-    resize: none; /* Prevent resizing of the textarea */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    width: 100%; /* Ensure the textarea takes up the full width */
-  }
+    .details-list li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .details-list .icon-green {
+        color: #34CC33;
+        margin-right: 10px;
+    }
+
+    .line {
+        border: 1px solid #ccc;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+    .icon-green {
+            font-size: 34px; /* Adjust the size as needed */
+        }
+
+    #description {
+      height: 30vh; /* Set the height as a percentage of the viewport height */
+        border: none; /* Hide the border */
+        resize: none; /* Prevent resizing of the textarea */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        width: 100%; /* Ensure the textarea takes up the full width */
+      }
   </style>
 <body>
 <?php require('header.php'); ?>
@@ -69,18 +69,18 @@ h2 {
       <br>
       <br>
       
-        <div class="gallery">
-          <!-- not set in the db yet -->
-          <!-- <div class="gallery-img-1"><img src="../../assets/images/property-1.jpg" onclick="showImage(this.src)"></div> -->
+        <div class="gallery">          
 
           <?php
             if(isset($_GET['id'])) {
               $id = $_GET['id'];
               $imagePaths = DbUtil::getImagePath($id);
-
-              foreach($imagePaths as $imagePath){
           ?>
-            <div><img src="../../assets/images/<?php echo $imagePath->image ?>" onclick="showImage(this.src)"></div>
+            <div class="gallery-img-1"><img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" onclick="showImage(this.src)"></div>
+          <?php
+              for($i = 1; $i < count($imagePaths); $i++){
+          ?>
+            <div><img src="../../assets/images/<?php echo $imagePaths[$i]->image ?>" onclick="showImage(this.src)"></div>
           <?php }} ?>
         </div>
         
@@ -88,11 +88,14 @@ h2 {
         <div id="overlay" class="overlay" onclick="hideImage()">
             <img id="zoomed-image" src="" alt="Zoomed Image">
         </div>
-        <form action="">
+
+        <?php if(!empty($_SESSION['user_type'])) $user = $_SESSION['user_type']; ?>
+        <form action="../controller/editPostController.php" method="post">
         <hr class="line">
         <h2>  
           <li>
-          <input type="text" placeholder="Great Location" id="location" name="location" style="margin-left: 5px;">
+          <input type="text" value="<?php echo $user ?>" style="margin-left: 5px;" >
+          <input type="text" placeholder="Great Location" id="location" name="location" style="margin-left: 5px;" <?php echo ($user == 'landlord')? 'readonly' : '' ; ?> >
         </li>
       </h2>
 
@@ -130,14 +133,44 @@ h2 {
       <br>
       <div style="position: relative;">
         <textarea placeholder="Description" id="description" name="description"></textarea>
+      
      <br>
      <br>
      <br>
      <br>
-     <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
-      <button style="margin-right: 5px;" class="btn btn-secondary"> Save Changes</button>
-      <button class="btn btn-secondary">Cancel</button>
-    </div>
+
+    <?php
+      if(isset($_SESSION['user']) && isset($_GET['id'])){
+        $id = $_GET['id'];
+        // $landlord_id = $_GET['landlord'];
+        if($_SESSION['user_type'] == 'landlord'){
+    ?>
+          <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
+            <button type="submit" style="margin-right: 5px;" class="btn btn-secondary"> Save Changes</button>
+            <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
+          </div>
+    <?php
+        }elseif($_SESSION['user_type'] == 'student'){
+          $std_id = $_SESSION['user_id'];
+          $landlord_id = $_GET['landlord'];
+    ?>
+          <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
+            <a href="../controller/studentRequestController.php?id=<?php echo $id ?>&std=<?php echo $std_id ?>&landlord=<?php echo $landlord_id ?>" style="margin-right: 5px;" class="btn btn-secondary">Request </a>
+          </div>
+    <?php 
+        }elseif($_SESSION['user_type'] == 'warden'){
+    ?>
+          <hr class="line">
+          <h2 style="color: black;">State a reason for the rejection</h2>
+          <textarea placeholder="Add something here" id="description" name="description"></textarea>
+          <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
+            <a href="../controller/postApproveController.php?id=<?php echo $id ?>&status=true" style="margin-right: 5px;" class="btn btn-secondary">Approve</a>
+            <a href="../controller/postApproveController.php?id=<?php echo $id ?>&status=false" class="btn btn-secondary">Reject</a>
+          </div>
+    <?php 
+        }
+      }
+    ?>
   
       </div>
 

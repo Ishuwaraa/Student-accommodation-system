@@ -289,43 +289,38 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     </div>
 </div>
 
-<div class="cart-container" style="margin-top: -50px;">
-    <h2 class="cart-heading" style="color: black;">Student Requests</h2>
-    <table class="requests-table">
-        <thead>
-            <tr>
-                <th>Ads ID</th>
-                <th>Student Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>ADS123</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>123-456-7890</td>
-                <td>
-                    <button class="approve-btn">Approve</button>
-                    <button class="reject-btn">Reject</button>
-                </td>
-            </tr>
-            <tr>
-                <td>ADS123</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>123-456-7890</td>
-                <td>
-                    <button class="approve-btn">Approve</button>
-                    <button class="reject-btn">Reject</button>
-                </td>
-            </tr>
-            <!-- Add more rows for additional requests -->
-        </tbody>
-    </table>
-</div>
+<?php if($_SESSION['user_type'] == 'landlord') { ?>
+    <div class="cart-container" style="margin-top: -50px;">
+        <h2 class="cart-heading" style="color: black;">Student Requests</h2>
+        <table class="requests-table">
+            <thead>
+                <tr>
+                    <th>Ad ID</th>
+                    <th>Student Name</th>
+                    <th>Phone Number</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $stdRequests = DbUtil::getStudentRequest($_SESSION['user_id']);
+                    foreach($stdRequests as $stdRequest){
+                ?>
+                    <tr>
+                        <td><?php echo $stdRequest->ad_id ?></td>
+                        <td><?php echo $stdRequest->std_name ?></td>
+                        <td><?php echo $stdRequest->std_contact ?></td>
+                        <td><?php echo $stdRequest->status ?></td>
+                        <td style="text-align: center;">
+                            <a href="../controller/stdReqApproveController.php?id=<?php echo $stdRequest->id ?>&status=true" class="approve-btn">Approve</a>
+                            <a href="../controller/stdReqApproveController.php?id=<?php echo $stdRequest->id ?>&status=false" class="reject-btn">Reject</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div><br>
+<?php } ?>
 
 <?php if($_SESSION['user_type'] == 'landlord') {?>
 <div class="cart-container">
@@ -339,6 +334,7 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                     $adDetails = DbUtil::getPost($_SESSION['user_id']);
 
                     foreach($adDetails as $adDetail){
+                        $imagePaths = DbUtil::getImagePath($adDetail->id);
                 ?>
                         <!--Card 1-->
                         <li>
@@ -351,7 +347,7 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                                     </div>
                                 </div>
                                 <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                                    <img src="view/images/property-1.jpg" width="800" height="533" loading="lazy"
+                                    <img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" width="800" height="533" loading="lazy"
                                     alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
                                 </figure>
                                 <div class="card-content">
@@ -377,8 +373,9 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                                             <span class="meta-title">Price</span>
                                             <span class="meta-text">Rs.<?php echo $adDetail->price?></span><br>
                                             <span class="meta-title">Status</span>
-                                            <span class="meta-text"><?php echo $adDetail->status?></span>
-                                            <input type="text" value="<?php echo $adDetail->id?>" style="display: none" name="adId">
+                                            <span class="meta-text"><?php echo $adDetail->status?></span><br>
+                                            <span class="meta-title">Ad Id</span>
+                                            <input type="text" value="<?php echo $adDetail->id?>" name="adId">
                                         </div>
                                     </div>
                                 </div>
