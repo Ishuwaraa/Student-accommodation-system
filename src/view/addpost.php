@@ -211,7 +211,13 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         <input type="tel" id="phone" name="phone" required><br>
 
         <label for="price">Price: <span style="color: red">*</span></label>
-        <input type="number" id="price" name="price" required><br>
+        <input type="text" id="price" name="price" required><br>
+
+        <label for="latitude">Latitude: <span style="color: red">*</span></label>
+        <input type="text" id="latitude" name="latitude" required><br>
+
+        <label for="longitude">Longitude: <span style="color: red">*</span></label>
+        <input type="text" id="longitude" name="longitude" required><br>
 
         <label for="description">Description: <span style="color: red">*</span></label>
         <textarea id="description" name="description" rows="5" required style="resize: none;"></textarea><br>

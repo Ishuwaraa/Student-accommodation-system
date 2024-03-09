@@ -46,9 +46,12 @@
           <li>
             <a href="testcard.php" class="navbar-link" data-nav-link>Testcards</a>
           </li>
+
+          <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] !== 'admin') {?>
           <li>
-            <a href="index.php" class="navbar-link" data-nav-link>Home</a>
+            <a href="home.php" class="navbar-link" data-nav-link>Home</a>
           </li>
+          <?php } ?>
 
           <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'landlord'){ ?>
             <li>
@@ -69,7 +72,7 @@
           <?php }?>
           
           <li>
-            <a href="#" class="navbar-link" data-nav-link>About Us</a>
+            <a href="index.php#aboutus" class="navbar-link" data-nav-link>About Us</a>
           </li>
         </ul>
       </nav>
