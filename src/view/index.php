@@ -24,6 +24,22 @@
 </head>
 <style>
 
+  .post-description-container::-webkit-scrollbar {
+    width: 4px; /* Width of the scrollbar */
+    height: 2px; /* Height of the scrollbar */
+}
+
+.post-description-container::-webkit-scrollbar-thumb {
+    background-color: #34CC33; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Border radius of the scrollbar thumb */
+}
+
+.post-description-container::-webkit-scrollbar-track {
+    background-color: transparent; /* Color of the scrollbar track */
+    border-radius: 10px; /* Border radius of the scrollbar track */
+}
+
+
 </style>
 
 <body id="top">
@@ -122,6 +138,8 @@
 
             foreach($blogs as $blog){
           ?>
+
+          
             <!-- Post 1 -->
             <div class="post-box food">
               <img src="../../assets/blogimages/<?php echo $blog->image?>" alt="" class="post-img">
@@ -130,6 +148,17 @@
               <!-- <span class="post-date">12 Feb 2022</span> -->
               <p class="post-description"><?php echo $blog->description ?></p>          
             </div>
+
+              <!-- Post 2 -->
+        <div class="post-box food">
+          <img src="../../assets/images/property-4.jpg" alt="" class="post-img">
+          <br>
+          <a href="#" class="post-title">How to create the best UI with Figma</a>
+          <span class="post-date">12 Feb 2022</span>
+          <div class="post-description-container">
+              <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem dignissimos accusamus iure dolorem dolorum! Laborum a maxime reprehenderit quod numquam sed, quo dolorem atque. Reprehenderit!</p>
+          </div>
+      </div>
           <?php } ?>   
 
         </div>
