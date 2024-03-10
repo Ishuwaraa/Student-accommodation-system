@@ -369,12 +369,11 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <?php } ?>
 
 <?php if($_SESSION['user_type'] == 'landlord') {?>
-<div class="cart-container">
-    <h2  class="cart-heading" style="color: black;">My Ads</h2>
-    <!-- Add your cart content here -->
-    <section class="property" id="property">
-        <div class="container">
-            <ul class="property-list has-scrollbar" style="overflow-x: auto;">
+    <!-- Card 1-->
+    <div class="cart-container">
+        <h2  class="cart-heading" style="color: black;">My Ads</h2>
+        <section class="property" id="property">
+            <div class="container">
 
                 <?php
                     $adDetails = DbUtil::getPost($_SESSION['user_id']);
@@ -382,146 +381,42 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                     foreach($adDetails as $adDetail){
                         $imagePaths = DbUtil::getImagePath($adDetail->id);
                 ?>
-                        <!--Card 1-->
-                        <li>
-                            <div class="property-card"  style="background-color: #ebf9eb;">
-                                <div class="dropdown dropdown-right" style="margin-left: 290px;">
-                                    <button class="dropbtn">...</button>
-                                    <div class="dropdown-content">
-                                        <a href="card.php?id=<?php echo $adDetail->id?>">Edit Post</a>
-                                        <a href="#" 
-                                            onclick="if (confirm('Are you sure you want to delete this post?')) { window.location.href = '../controller/deletePostController.php?id=<?php echo $adDetail->id?>'; }">
-                                            Delete Post
-                                        </a>
-                                    </div>
+                    <div class="card">
+                        <img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" alt="Property Image">
+                        <div class="card-content">
+                            <div class="title"><?php echo $adDetail->location?></div>
+                            <div style="display: flex; ">
+                                <div style=" width: 100px;">
+                                    <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds: <?php echo $adDetail->bed?> </div></div>
+                                    <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: <?php echo $adDetail->bath?> </div></div>
+                                    <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: <?php echo $adDetail->id?> </div></div>                           
                                 </div>
-                                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                                    <img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" width="800" height="533" loading="lazy"
-                                    alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
-                                </figure>
-                                <div class="card-content">
-                                    <h3 class="h3">
-                                        <a href="#" class="card-title"><?php echo $adDetail->location?></a>
-                                    </h3>
-                                    <ul class="card-list">
-                                        <li class="card-item">
-                                            <div class="item-icon">
-                                                <ion-icon name="bed-outline"></ion-icon>
-                                            </div>
-                                            <span class="item-text"><?php echo $adDetail->bed?> Beds</span>
-                                        </li>
-                                        <li class="card-item">
-                                            <div class="item-icon">
-                                                <ion-icon name="man-outline"></ion-icon>
-                                            </div>
-                                            <span class="item-text"><?php echo $adDetail->bath?> Baths</span>
-                                        </li>
-                                    </ul>
-                                    <div class="card-meta">
-                                        <div>
-                                            <span class="meta-title">Price</span>
-                                            <span class="meta-text">Rs.<?php echo $adDetail->price?></span><br>
-                                            <span class="meta-title">Status</span>
-                                            <span class="meta-text"><?php echo $adDetail->status?></span><br>
-                                            <span class="meta-title">Ad Id</span>
-                                            <input type="text" value="<?php echo $adDetail->id?>" name="adId">
-                                        </div>
+                                <div class="vertical-line"></div>
+                    
+                                <div style=" margin-left: 40px; margin-top: 30px;">
+                                    <div style="font-size: 24px;">Rs.<?php echo $adDetail->price?></div>
+                                    <div class="status" style="margin-top: 40px; margin-left: 0px;">Status: <?php echo $adDetail->status?></div>                            
+                                    <div>
+                                        <?php if(!empty($adDetail->getRejectReason())){ ?>
+                                        <p style="color: red; font-size: 1.3rem;">Reason: <?php echo $adDetail->getRejectReason()?></p>
+                                        <?php } ?>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
-                <?php
-                    }
-                ?>
-                
-                <br>
-            </ul>
-        </div>
-    </section>
-</div>
-<?php } ?>
-
-
-<!--2024/03/10-->
- <!-- Card 1-->
- <div class="cart-container">
-        <h2  class="cart-heading" style="color: black;">My Ads</h2>
-    <section class="property" id="property">
-        <div class="container">
-
-            <div class="card">
-                <img src="property-1.jpg" alt="Property Image">
-                <div class="card-content">
-                    <div class="title">Property Title Lorem.</div>
-                    <div style="display: flex; ">
-                        <div style=" width: 100px;">
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds:  3 </div></div>
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: 2 </div></div>
-                            <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: 2 </div></div>
-                           
-                        </div>
-                        <div class="vertical-line"></div>
-            
-                        <div style=" margin-left: 40px; margin-top: 30px;">
-                            <div style="font-size: 24px;">Rs.250,000</div>
-                            <div class="status" style="margin-top: 40px; margin-left: 0px;">For Sale
-                               
-                            </div>
-                            
-                            <div>
-                                <p style="color: red; font-size: 1.3rem;">*Lorem ipsum dolor sit </p>
+                                </div>                        
+                            </div>               
+                            <div class="action-buttons">
+                                <a href="card.php?id=<?php echo $adDetail->id?>"><button class="Change-button">Edit Ad</button></a>
+                                <button class="delete-button"
+                                    onclick="if (confirm('Are you sure you want to delete this post?')) { window.location.href = '../controller/deletePostController.php?id=<?php echo $adDetail->id?>'; }">
+                                            Delete Ad
+                                </button>
                             </div>
                         </div>
-                        
                     </div>
-               
-                    <div class="action-buttons">
-                        <button class="Change-button" onclick="changeAds()" >Change Ads</button>
-                        <button class="delete-button" onclick="deleteAds()">Delete Ads</button>
-                    </div>
-                </div>
+                <?php } ?>                  
             </div>
-
-            <!--Card 2-->
-
-            <div class="card">
-                <img src="property-1.jpg" alt="Property Image">
-                <div class="card-content">
-                    <div class="title">Property Title Lorem.</div>
-                    <div style="display: flex; ">
-                        <div style=" width: 100px;">
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds:  3 </div></div>
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: 2 </div></div>
-                            <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: 2 </div></div>
-                           
-                        </div>
-                        <div class="vertical-line"></div>
-            
-                        <div style=" margin-left: 40px; margin-top: 30px;">
-                            <div style="font-size: 24px;">Rs.250,000</div>
-                            <div class="status" style="margin-top: 40px; margin-left: 0px;">For Sale
-                               
-                            </div>
-                            
-                            <div>
-                                <p style="color: red; font-size: 1.3rem;">*Lorem ipsum dolor sit </p>
-                            </div>
-                        </div>
-                        
-                    </div>
-               
-                    <div class="action-buttons">
-                        <button class="Change-button" onclick="changeAds()" >Change Ads</button>
-                        <button class="delete-button" onclick="deleteAds()">Delete Ads</button>
-                    </div>
-                </div>
-            </div>
-
-          
-           
-        </div>
-    </section>
+        </section>
     </div>
+<?php } ?>
 
 <!-- Notification Panel -->
 <!-- <div class="notification-panel" id="notificationPanel">

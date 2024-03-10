@@ -124,6 +124,41 @@ class DbUtil {
         return $result;
     }
 
+    public static function checkRegisteredUser($email, $password, $type){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            if($type == 'student'){
+                $sql = "select * from student where email = '$email' and password = '$password' ";
+                $result = mysqli_query($conn, $sql);
+
+                if(mysqli_num_rows($result) > 0){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }
+            elseif($type == 'landlord'){
+                $sql = "select * from landlord where email = '$email' and password = '$password' ";
+                $result = mysqli_query($conn, $sql);
+
+                if(mysqli_num_rows($result) > 0){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }
+            else{
+                $sql = "select * from warden where email = '$email' and password = '$password' ";
+                $result = mysqli_query($conn, $sql);
+
+                if(mysqli_num_rows($result) > 0){
+                    $isSuccess = true;
+                }else $isSuccess = false;
+            }
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
     public static function getStudentDetails($id){
         $conn = DbConnect::dbConnect();
         $student = null;
@@ -400,6 +435,7 @@ class DbUtil {
                     $adDetail->setStaus($row['status']);
                     $adDetail->setLatitude($row['latitude']);
                     $adDetail->setLongitude($row['longitude']);
+                    $adDetail->setRejectReason($row['reject_reason']);
 
                     $adDetails[] = $adDetail;   //adding each row to the array
                 }
@@ -434,6 +470,7 @@ class DbUtil {
                 $adDetail->setLandlord($row['landlord_id']);
                 $adDetail->setLatitude($row['latitude']);
                 $adDetail->setLongitude($row['longitude']);
+                $adDetail->setRejectReason($row['reject_reason']);
             }
         }catch (mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
@@ -490,6 +527,7 @@ class DbUtil {
             if($result && mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_assoc($result)){
                     $blog = new Blog();
+                    $blog->setId($row['id']);
                     $blog->setTitle($row['title']);
                     $blog->setDescription($row['description']);
                     $blog->setImage($row['image']);
@@ -501,6 +539,61 @@ class DbUtil {
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
         return $blogs;
+    }
+
+    public static function getOneBlog($id){
+        $conn = DbConnect::dbConnect();
+        $blog = null;
+
+        try{
+            $sql = "select * from admin_blog where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+            
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $blog = new Blog();
+                    $blog->setId($row['id']);
+                    $blog->setTitle($row['title']);
+                    $blog->setDescription($row['description']);
+                    $blog->setImage($row['image']);
+                }
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $blog;
+    }
+
+    public static function updateBlog($id, $title, $description){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "update admin_blog set title = '$title', description = '$description' where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result) $isSuccess = true;
+            else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function deleteBlog($id){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "delete from admin_blog where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result) $isSuccess = true;
+            else $isSuccess = false;
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
     }
 
     public static function wardenApproval($id, $status, $description){

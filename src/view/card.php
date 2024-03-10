@@ -83,9 +83,13 @@
       <img id="zoomed-image" src="" alt="Zoomed Image">
     </div>
 
-    <?php if(!empty($_SESSION['user_type'])) $user = $_SESSION['user_type'];
+    <?php $latitude = null;
+          $longitude = null;
+          if(!empty($_SESSION['user_type'])) $user = $_SESSION['user_type'];
           if($_SESSION['user_type'] == 'landlord'){ 
             $adDetail = DbUtil::getOnePost($id);
+            $latitude = $adDetail->latitude;
+            $longitude = $adDetail->longitude;
     ?>
       <form action="../controller/editPostController.php" method="post">
         <hr class="line">
@@ -135,7 +139,7 @@
             </li>
             <li>
                 <ion-icon class="icon-green" name="call-outline"></ion-icon>
-                <label for="contact">Contact:</label>
+                <label for="contact">Contact:</label>                
                 <input type="text" placeholder=" Phone Number" value="<?php echo $adDetail->phone ?>" id="contact" name="phone" required style="margin-left: 5px;">
             </li>
             <li>
@@ -144,12 +148,12 @@
                 <input type="text" placeholder=" Your Price Here" value="<?php echo $adDetail->price ?>" id="price" name="price" required style="margin-left: 5px;">
             </li>
             <li>
-                <ion-icon class="icon-green" name="pricetag-outline"></ion-icon>
+                <ion-icon class="icon-green" name="location-outline"></ion-icon>
                 <label for="latitude">Latitude:</label>
                 <input type="text" placeholder="Latitude" value="<?php echo $adDetail->latitude ?>" id="latitude" name="latitude" required style="margin-left: 5px;">
             </li>
             <li>
-                <ion-icon class="icon-green" name="pricetag-outline"></ion-icon>
+                <ion-icon class="icon-green" name="location-outline"></ion-icon>
                 <label for="longitude">Longitude:</label>
                 <input type="text" placeholder="Longitude" value="<?php echo $adDetail->longitude ?>" id="longitude" name="longitude" required style="margin-left: 5px;">
             </li>
@@ -157,7 +161,7 @@
           <hr class="line">
           <h2 style="color: black;">Description</h2><br>
           <textarea placeholder="Description" id="description" name="description" required><?php echo $adDetail->description ?></textarea><br><br><br><br>
-
+          
           <div style="position: relative;">
             <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
               <button type="submit" style="margin-right: 5px;" class="btn btn-secondary"> Save Changes</button>
@@ -167,6 +171,8 @@
 
         <?php } else{ 
                   $adDetail = DbUtil::getOnePost($id);  
+                  $latitude = $adDetail->latitude;
+                  $longitude = $adDetail->longitude;
         ?>
           <h2>  
             <li>
@@ -246,12 +252,11 @@
 
       </div>
 
-
       <!-- </form> -->
 
       <hr class="line">
       <div class="map">
-          <h3>Location on map</h3>          
+          <h3>Location on map</h3>  
           <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3947.666983691001!2d80.41028307470498!3d8.335848991700383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMjAnMDkuMSJOIDgwwrAyNCc0Ni4zIkU!5e0!3m2!1sen!2slk!4v1707666774021!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     

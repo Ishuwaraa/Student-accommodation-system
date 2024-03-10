@@ -2,87 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Student Accommodation - NSBM</title>
-     <!--Box icons-->
-     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
-
+    <!--Box icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!--Bootstrap link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-
     <style>
-    /*Google Fonts*/
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600;700;900&display=swap');
-    *{
-        font-family: 'Poppins',sans-serif;
-    }
-    .register-main{
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0; 
-        animation: slideDown 0.5s ease-in-out 0.3s forwards; 
-    }
-    .btn-login {
-        background-color: #3cb815;
-        border-radius: 0.5rem;
-        color:#fff;
-        display: flex;
-        align-items: center;
-        justify-content:space-between;
-        column-gap: 00.5rem;
-        max-width: 220px;
-    }
-    .btn-login .bx{
-        padding: 4px;
-        background: #fff;
-        color: #1a2428;
-        border-radius: 1rem;
-        font-size: 15px;
-        margin: auto;
-    }
-    .btn-login:hover {
-        background-color: #ff7e00;
-        border-color: #ff7e00;
-        transition: 0.2s ease;
-    }
-    .input-group-text .bi{
-        padding: 4px;
-        background: #fff;
-        color: #1a2428;
-        border-radius: 0.5rem;
-        font-size: 15px;
-        margin: auto;
-    }
-    @keyframes slideDown {
-        from {
-            transform: translate(-50%, -60%); 
-            opacity: 0; 
+      
+        body{
+            font-family: 'League Spartan', sans-serif;
+            background: #ececec;
         }
-        to {
-            transform: translate(-50%, -50%);
-            opacity: 1;
+        /*------------ Login container ------------*/
+        .box-area{
+            width: 930px;
         }
-    }
-</style>
+        /*------------ Right box ------------*/
+        .right-box{
+            padding: 40px 30px 40px 40px;
+            overflow-y: auto;
+            max-height: 500px;
+        }
 
+        /* Custom scrollbar */
+        .right-box::-webkit-scrollbar {
+        width: 12px;
+        }
+
+        .right-box::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        }
+
+        .right-box::-webkit-scrollbar-thumb {
+        background-color: #8DCA3C;
+        border-radius: 10px;
+        }
+
+        .right-box::-webkit-scrollbar-thumb:hover {
+        background: #8DCA3C;
+        }
+
+        /*------------ Custom Placeholder ------------*/
+        ::placeholder{
+            font-size: 16px;
+        }
+        .rounded-4{
+            border-radius: 20px;
+        }
+        .rounded-5{
+            border-radius: 30px;
+        }
+
+        /*------------ For small screens------------*/
+        @media only screen and (max-width: 768px){
+            .box-area{
+                margin: 0 10px;
+            }
+            .left-box{
+                height: 100px;
+                overflow: hidden;
+            }
+            .right-box{
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-<body style="background: url(login_background.jpg);">
-    <div class="container-lg register-main border border-1 " style="background:#fef4ea; border-radius: 0.5rem; backdrop-filter: blur(5px);" >
-        <div class="row justify-content-center align-items-center py-4">
-            <div class="col-8 col-md-4 mb-5">
-                <h4 class="fw-bold"style="color: #3cb815;">Student Accommodation</h4>
-                <p class="fw-bold" >Create Account</p>
-                <div class="mt-3" >
-                    <h6 style="color: #ff7e00; font-family: 'Poppins',sans-serif; font-weight:200 ;">Already has an account?</h6> 
-                    <a href="login.php" class="btn btn-login">Click here to Log in<i class='bx bx-right-arrow-alt'></i></a>
-                    <br>
-                </div>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #8DCA3C;">
+            <div class="featured-image mb-3">
+                <img src="../../assets/images/loginbackground.jpg" class="img-fluid" style="width: 450px;">
             </div>
-            <div class="col-8 col-md-6">
+            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Student Accommodation</p>
+            <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Where Every Student Finds Their Home Away From Home!</small>
+        </div> 
+        
+        <div class="col-md-6 right-box">
+            <div class="row align-items-center">
+                <div class="header-text mb-4">
+                     <h2>Welcome!</h2>
+                     <!-- <p>We are happy to have you back.</p> -->
+                </div>
                 <form action="../controller/registerController.php" method="post">
                     <label for="name" class="form-label">Name <span style="color: red">*</span></label>
                     <div class="input-group mb-3">
@@ -126,17 +137,21 @@
                         <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                         <input type="password" class="form-control" id="confirm" name="conpassword" placeholder="confirm password" required>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-login" type="submit" name="register">Register<i class='bx bx-right-arrow-alt'></i></button>
+                    
+                    <div class="input-group mb-3" style="margin-top: 20px;">
+                        <button type="submit" name="register" class="btn btn-lg w-100 fs-6" style="background-color: #8DCA3C; color: #fff; border-radius: 10rem;" >Register</button>
                     </div>
                 </form>
-            </div>
-        </div>
+            
+                <div class="row">
+                    <small>Already has an account? <a href="login.php">Sign In</a></small>
+                </div>
+          </div>
+       </div> 
     </div>
-
+    </div>
 
     <!--Bootstrap js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
-    
 </body>
 </html>

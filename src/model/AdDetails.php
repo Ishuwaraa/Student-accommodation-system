@@ -13,6 +13,7 @@
         public $landlord;
         public $latitude;
         public $longitude;
+        public $rejectReason;
 
         public function __construct(){}
 
@@ -52,6 +53,9 @@
         public function setLongitude($longitude){
             $this->longitude = $longitude;
         }
+        public function setRejectReason($rejectReason){
+            $this->rejectReason = $rejectReason;
+        }
         
         public function getId(){
             return $this->id;
@@ -88,6 +92,9 @@
         }
         public function getLongitude(){
             return $this->longitude;
+        }
+        public function getRejectReason(){
+            return $this->rejectReason;
         }
     }
 ?>
