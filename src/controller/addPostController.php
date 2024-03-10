@@ -11,6 +11,8 @@
         $phone = $_POST['phone'];
         $price = $_POST['price'];
         $description = $_POST['description'];
+        $latitude = $_POST['latitude'];
+        $longitude = $_POST['longitude'];
 
         $target_dir = "../../assets/images/";
         $uploadOk = 1;
@@ -20,7 +22,7 @@
         $fileUploadSuccess = false;
 
         //inserting form details
-        $foreignId = DbUtil::addPost($_SESSION['user_id'], $beds, $baths, $category, $phone, $price, $description, $location);
+        $foreignId = DbUtil::addPost($_SESSION['user_id'], $beds, $baths, $category, $phone, $price, $description, $location, $latitude, $longitude);
 
         //inserting images
         if($foreignId !== null){

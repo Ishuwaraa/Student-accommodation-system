@@ -11,6 +11,8 @@
         public $location;
         public $status;
         public $landlord;
+        public $latitude;
+        public $longitude;
 
         public function __construct(){}
 
@@ -44,6 +46,12 @@
         public function setLandlord($landlord){
             $this->landlord = $landlord;
         }
+        public function setLatitude($latitude){
+            $this->latitude = $latitude;
+        }
+        public function setLongitude($longitude){
+            $this->longitude = $longitude;
+        }
         
         public function getId(){
             return $this->id;
@@ -74,6 +82,12 @@
         }
         public function getLandlord(){
             return $this->landlord;
+        }
+        public function getLatitude(){
+            return $this->latitude;
+        }
+        public function getLongitude(){
+            return $this->longitude;
         }
     }
 ?>

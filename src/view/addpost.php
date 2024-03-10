@@ -14,7 +14,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style/style.css">
-<title>Add a Post</title>
+<title>Student Accommodation - NSBM</title>
 
 <style>
     body {
@@ -179,7 +179,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         </table>
 
 
-        <label for="location">Location: <span style="color: red">*</span></label>
+        <label for="location">Title: <span style="color: red">*</span></label>
         <input type="text" id="location" name="location" required><br>
 
         <label for="beds">Beds: <span style="color: red">*</span></label>
@@ -211,7 +211,13 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         <input type="tel" id="phone" name="phone" required><br>
 
         <label for="price">Price: <span style="color: red">*</span></label>
-        <input type="number" id="price" name="price" required><br>
+        <input type="text" id="price" name="price" required><br>
+
+        <label for="latitude">Latitude: <span style="color: red">*</span></label>
+        <input type="text" id="latitude" name="latitude" required><br>
+
+        <label for="longitude">Longitude: <span style="color: red">*</span></label>
+        <input type="text" id="longitude" name="longitude" required><br>
 
         <label for="description">Description: <span style="color: red">*</span></label>
         <textarea id="description" name="description" rows="5" required style="resize: none;"></textarea><br>

@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Profile</title>
+<title>Student Accommodation - NSBM</title>
 <link rel="stylesheet" href="../../public/styles/style.css">
 
 <link rel="stylesheet"
@@ -243,8 +243,8 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                 <input class="profile-input" type="text" id="id" name="id" value="<?php echo $student->getId() ?>" readonly style="display: none;">
                 <label class="profile-label" for="name">Name:</label>
                 <input class="profile-input" type="text" id="name" value="<?php echo $student->getName() ?>" name="name">
-                <label class="profile-label" for="email">Email:</label>
-                <input class="profile-input" type="text" id="email" value="<?php echo $student->getEmail() ?>" name="email">
+                <label class="profile-label" for="email"><span style="color: red;">*</span>Email:</label>
+                <input class="profile-input" type="text" id="email" value="<?php echo $student->getEmail() ?>" name="email" required>
                 <label class="profile-label" for="phone">Phone Number:</label>
                 <input class="profile-input" type="text" id="phone" value="<?php echo $student->getContact() ?>" name="contact">
                 <button class="btn btn-secondary change-btn" type="submit" name="editprofile">Save Changes</button>
@@ -256,8 +256,8 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                 <input class="profile-input" type="text" id="id" name="id" value="<?php echo $landlord->getId() ?>" readonly style="display: none;">
                 <label class="profile-label" for="name">Name:</label>
                 <input class="profile-input" type="text" id="name" value="<?php echo $landlord->getName() ?>" name="name">
-                <label class="profile-label" for="email">Email:</label>
-                <input class="profile-input" type="text" id="email" value="<?php echo $landlord->getEmail() ?>" name="email">
+                <label class="profile-label" for="email"><span style="color: red;">*</span>Email:</label>
+                <input class="profile-input" type="text" id="email" value="<?php echo $landlord->getEmail() ?>" name="email" required>
                 <label class="profile-label" for="phone">Phone Number:</label>
                 <input class="profile-input" type="text" id="phone" value="<?php echo $landlord->getContact() ?>" name="contact">
                 <button class="btn btn-secondary change-btn" type="submit" name="editprofile">Save Changes</button>
@@ -268,11 +268,11 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <h3  style="color: black;">Change Password</h3>
         <br>
         <form action="../controller/editPasswordController.php" method="post">
-            <label class="profile-label" for="currentPassword">Current Password:<span style="color: red;">*</span></label>
+            <label class="profile-label" for="currentPassword"><span style="color: red;">*</span>Current Password:</label>
             <input class="profile-input" type="password" id="currentPassword" name="curpass" required>
-            <label class="profile-label" for="newPassword">New Password: <span style="color: red;">*</span></label>
+            <label class="profile-label" for="newPassword"><span style="color: red;">*</span>New Password: </label>
             <input class="profile-input" type="password" id="newPassword" name="newpass" required>
-            <label class="profile-label" for="confirmPassword">Confirm New Password: <span style="color: red;">*</span></label>
+            <label class="profile-label" for="confirmPassword"><span style="color: red;">*</span>Confirm New Password: </label>
             <input class="profile-input" type="password" id="confirmPassword" name="conpass" required>
             <button class="btn btn-secondary change-btn" type="submit" name="editpass">Save Changes</button>
         </form>
@@ -282,9 +282,9 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <h3  style="color: black;">Delete Account</h3>
         <br>
         <form action="../controller/deleteProfileController.php" method="post">
-            <label class="profile-label" for="currentPassword">Enter Password:<span style="color: red;">*</span></label>
+            <label class="profile-label" for="currentPassword"><span style="color: red;">*</span>Enter Password:</label>
             <input class="profile-input" type="password" id="currentPassword" name="curpass" required>
-            <button class="btn btn-secondary change-btn" type="submit" name="deleteacc">Delete Account</button>
+            <button class="btn btn-secondary change-btn" type="submit" name="deleteacc" style="background-color: #f44336;">Delete Account</button>
         </form>
     </div>
 </div>
@@ -343,7 +343,10 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                                     <button class="dropbtn">...</button>
                                     <div class="dropdown-content">
                                         <a href="card.php?id=<?php echo $adDetail->id?>">Edit Post</a>
-                                        <a href="#">Delete Post</a>
+                                        <a href="#" 
+                                            onclick="if (confirm('Are you sure you want to delete this post?')) { window.location.href = '../controller/deletePostController.php?id=<?php echo $adDetail->id?>'; }">
+                                            Delete Post
+                                        </a>
                                     </div>
                                 </div>
                                 <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
@@ -441,8 +444,6 @@ function showPopupNotification() {
     var message = "This is a popup notification!";
     displayNotification(message);
 }
-
-
 
 
 

@@ -11,7 +11,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Realvine - Choose your dream place</title>
+  <title>Student Accommodation - NSBM</title>
+  <!-- <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico"> -->
   <link rel="stylesheet" href="../../public/styles/index.css">
 
 
@@ -113,7 +114,7 @@
       </section>
       <br>
      
-      <section>
+      <section id="aboutus">
         <div class="about-section">
           <div class="inner-container">
               <h1>About Us</h1>
@@ -130,35 +131,23 @@
         </div>
       </section>
 
-      <section>
+      <section id="blogs">
         <div class="post container">
 
           <?php 
             $blogs = DbUtil::getBlog();
 
             foreach($blogs as $blog){
-          ?>
-
-          
+          ?>        
             <!-- Post 1 -->
             <div class="post-box food">
               <img src="../../assets/blogimages/<?php echo $blog->image?>" alt="" class="post-img">
               <br>
-              <p class="post-title"><?php echo $blog->title ?></p>
-              <!-- <span class="post-date">12 Feb 2022</span> -->
-              <p class="post-description"><?php echo $blog->description ?></p>          
+              <a href="#" class="post-title"><?php echo $blog->title ?></a>
+              <div class="post-description-container">
+                  <p class="post-description"><?php echo $blog->description ?></p>
+              </div>
             </div>
-
-              <!-- Post 2 -->
-        <div class="post-box food">
-          <img src="../../assets/images/property-4.jpg" alt="" class="post-img">
-          <br>
-          <a href="#" class="post-title">How to create the best UI with Figma</a>
-          <span class="post-date">12 Feb 2022</span>
-          <div class="post-description-container">
-              <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem dignissimos accusamus iure dolorem dolorum! Laborum a maxime reprehenderit quod numquam sed, quo dolorem atque. Reprehenderit!</p>
-          </div>
-      </div>
           <?php } ?>   
 
         </div>

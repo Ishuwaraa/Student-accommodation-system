@@ -288,12 +288,12 @@ class DbUtil {
         return $isSuccess;
     }
 
-    public static function addPost($id, $bed, $baths, $category, $phone, $price, $description, $location){
+    public static function addPost($id, $bed, $baths, $category, $phone, $price, $description, $location, $latitude, $longitude){
         $conn = DbConnect::dbConnect();
         $foreignId = null;
 
         try{
-            $sql = "insert into adpost values (0, '$bed', '$baths', '$category', '$phone', '$price', '$description', '$location', 'pending', '$id')";
+            $sql = "insert into adpost values (0, '$bed', '$baths', '$category', '$phone', '$price', '$description', '$location', 'pending', '$id', ' ', '$latitude', '$longitude')";
             $result = mysqli_query($conn, $sql);
 
             if($result){
@@ -341,6 +341,43 @@ class DbUtil {
         return $isSuccess;
     }
 
+    public static function deleteImagePath($id){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "delete from ad_image where ad_id = '$id'";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
+    public static function updatePost($id, $bed, $bath, $category, $phone, $price, $description, $location, $latitude, $longitude){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "update adpost set bed = '$bed', baths = '$bath', category = '$category', phone = '$phone', price = '$price', 
+            description = '$description', location = '$location', latitude = '$latitude', longitude = '$longitude' where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else {
+                $isSuccess = false;
+            }
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
     public static function getPost($landlordid){
         $conn = DbConnect::dbConnect();
         $adDetails = [];
@@ -361,6 +398,8 @@ class DbUtil {
                     $adDetail->setDescription($row['description']);
                     $adDetail->setLocation($row['location']);
                     $adDetail->setStaus($row['status']);
+                    $adDetail->setLatitude($row['latitude']);
+                    $adDetail->setLongitude($row['longitude']);
 
                     $adDetails[] = $adDetail;   //adding each row to the array
                 }
@@ -370,6 +409,37 @@ class DbUtil {
         }
 
         return $adDetails;
+    }
+
+    public static function getOnePost($id){
+        $conn = DbConnect::dbConnect();
+        $adDetail = null;
+
+        try{
+            $sql = "select * from adpost where id = '$id' ";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result) > 0){
+                $row = mysqli_fetch_assoc($result);
+                $adDetail = new AdDetails();
+                $adDetail->setId($row['id']);
+                $adDetail->setBed($row['bed']);
+                $adDetail->setBath($row['baths']);
+                $adDetail->setCategory($row['category']);
+                $adDetail->setPhone($row['phone']);
+                $adDetail->setPrice($row['price']);
+                $adDetail->setDescription($row['description']);
+                $adDetail->setLocation($row['location']);
+                $adDetail->setStaus($row['status']);
+                $adDetail->setLandlord($row['landlord_id']);
+                $adDetail->setLatitude($row['latitude']);
+                $adDetail->setLongitude($row['longitude']);
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+
+        return $adDetail;
     }
 
     public static function getImagePath($adId){
@@ -433,12 +503,12 @@ class DbUtil {
         return $blogs;
     }
 
-    public static function wardenApproval($id, $status){
+    public static function wardenApproval($id, $status, $description){
         $conn = DbConnect::dbConnect();
         $isSuccess = false;
 
         try{
-            $sql = "update adpost set status = '$status' where id = '$id' ";
+            $sql = "update adpost set status = '$status', reject_reason = '$description' where id = '$id' ";
             $result = mysqli_query($conn, $sql);
 
             if($result){
@@ -471,6 +541,8 @@ class DbUtil {
                     $post->setLocation($row['location']);
                     $post->setStaus($row['status']);
                     $post->setLandlord($row['landlord_id']);
+                    $post->setLatitude($row['latitude']);
+                    $post->setLongitude($row['longitude']);
 
                     $posts[] = $post;   //adding each row to the array
                 }
@@ -502,6 +574,8 @@ class DbUtil {
                     $post->setLocation($row['location']);
                     $post->setStaus($row['status']);
                     $post->setLandlord($row['landlord_id']);
+                    $post->setLatitude($row['latitude']);
+                    $post->setLongitude($row['longitude']);
 
                     $posts[] = $post;   //adding each row to the array
                 }

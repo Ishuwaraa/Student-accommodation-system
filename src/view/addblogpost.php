@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style/style.css">
-<title>Add a Post</title>
+<title>Student Accommodation - NSBM</title>
 
 <style>
     body {
@@ -130,7 +130,7 @@
 
         <table>
             <tr>
-                <td><label for="photos">Upload images:</label></td>
+                <td><label for="photos">Upload image:</label></td>
             </tr>
             <tr>
                 <td style="background-color: #bbbaba; border-radius: 0.5rem;">
