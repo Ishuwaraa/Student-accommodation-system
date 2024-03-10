@@ -94,80 +94,8 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 .profile-sidebar li.active {
     background-color: #f0f0f0; /* Change the background color to highlight */
 }
-.notification-panel {
-    position: fixed;
-    bottom: 250px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 100px 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none;
-}
 
-.notification-panel p {
-    margin: 0;
-}
 
-.notification-panel button {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: 300;
-    font-size: small;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-top: 5px;
- }
- /* Style the dropdown button */
- .dropbtn {
-    background-color: transparent;
-    color: #000;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #aaffac;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    border-radius: 0.5rem;
-  }
-
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-     /* Style the dropdown to align right */
-     .dropdown-right .dropdown-content {
-        right: 0; /* Align dropdown content to the right */
-    }
     .requests-table {
     width: 100%;
     border-collapse: collapse;
@@ -207,6 +135,124 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     width: 90px;
     border-radius: 10rem;
 }
+.card {
+            position: relative;
+            display: flex;
+            width: 900px; /* Adjust the card width as needed */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            margin-top: 10px;
+        }
+
+        .card img {
+            width: 350px; /* Adjust the image width as needed */
+            height: auto; /* Keep the image height unchanged */
+            object-fit: cover;
+            border-top-right-radius:10px ;
+            border-bottom-right-radius:10px ;
+        }
+
+        .card-content {
+            position: relative;
+            flex: 1;
+            padding: 20px;
+            margin-left: 40px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .beds-baths {
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50; /* Green color for price, you can change it */
+        }
+
+        .status {
+            font-size: 18px;
+            color: #888; /* Gray color for status, you can change it */
+        }
+        .vertical-line {
+            border-left: 1px solid black; /* You can adjust the width and color as needed */
+            height: 150px; /* Adjust the height of the line */
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        /* Style for ion-icons */
+        ion-icon {
+            font-size: 24px; /* Icon size */
+            color: #34CC33; /* Icon color */
+            padding-top: 10px;
+        }
+
+        .action-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        
+        }
+
+        .action-buttons button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 10rem;
+            cursor: pointer;
+
+        }
+        .Change-button{
+            background-color: #34CC33; /* Red color for button background */
+            color: white; /* Text color */
+            transition: background-color 0.3s; 
+        }
+        .Change-button:hover {
+            background-color: #FFD149; /* Darker red color on hover */
+        }
+
+        /* Style for "Delete Ads" button */
+        .delete-button {
+            background-color: #ccc; /* Red color for button background */
+            color: white; /* Text color */
+            transition: background-color 0.3s; /* Smooth transition for background color change */
+        }
+
+        /* Hover effect for "Delete Ads" button */
+        .delete-button:hover {
+            background-color: #f44336; /* Darker red color on hover */
+        }
+
+
+/* CSS for default card size */
+.card {
+    width: 900px; /* Default width */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 100%; /* Change width to 100% for smaller screens */
+    }
+}
+
+/* Media query for even smaller screens, e.g., mobile devices */
+@media screen and (max-width: 480px) {
+    .card {
+        width: 100%; /* Adjust width for smaller mobile screens */
+        /* You can also adjust other properties like font size or padding here */
+    }
+}
+
 
 
 
@@ -394,6 +440,88 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     </section>
 </div>
 <?php } ?>
+
+
+<!--2024/03/10-->
+ <!-- Card 1-->
+ <div class="cart-container">
+        <h2  class="cart-heading" style="color: black;">My Ads</h2>
+    <section class="property" id="property">
+        <div class="container">
+
+            <div class="card">
+                <img src="property-1.jpg" alt="Property Image">
+                <div class="card-content">
+                    <div class="title">Property Title Lorem.</div>
+                    <div style="display: flex; ">
+                        <div style=" width: 100px;">
+                            <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds:  3 </div></div>
+                            <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: 2 </div></div>
+                            <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: 2 </div></div>
+                           
+                        </div>
+                        <div class="vertical-line"></div>
+            
+                        <div style=" margin-left: 40px; margin-top: 30px;">
+                            <div style="font-size: 24px;">Rs.250,000</div>
+                            <div class="status" style="margin-top: 40px; margin-left: 0px;">For Sale
+                               
+                            </div>
+                            
+                            <div>
+                                <p style="color: red; font-size: 1.3rem;">*Lorem ipsum dolor sit </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+               
+                    <div class="action-buttons">
+                        <button class="Change-button" onclick="changeAds()" >Change Ads</button>
+                        <button class="delete-button" onclick="deleteAds()">Delete Ads</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+
+            <div class="card">
+                <img src="property-1.jpg" alt="Property Image">
+                <div class="card-content">
+                    <div class="title">Property Title Lorem.</div>
+                    <div style="display: flex; ">
+                        <div style=" width: 100px;">
+                            <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds:  3 </div></div>
+                            <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: 2 </div></div>
+                            <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: 2 </div></div>
+                           
+                        </div>
+                        <div class="vertical-line"></div>
+            
+                        <div style=" margin-left: 40px; margin-top: 30px;">
+                            <div style="font-size: 24px;">Rs.250,000</div>
+                            <div class="status" style="margin-top: 40px; margin-left: 0px;">For Sale
+                               
+                            </div>
+                            
+                            <div>
+                                <p style="color: red; font-size: 1.3rem;">*Lorem ipsum dolor sit </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+               
+                    <div class="action-buttons">
+                        <button class="Change-button" onclick="changeAds()" >Change Ads</button>
+                        <button class="delete-button" onclick="deleteAds()">Delete Ads</button>
+                    </div>
+                </div>
+            </div>
+
+          
+           
+        </div>
+    </section>
+    </div>
 
 <!-- Notification Panel -->
 <!-- <div class="notification-panel" id="notificationPanel">
