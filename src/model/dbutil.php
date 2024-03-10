@@ -341,6 +341,23 @@ class DbUtil {
         return $isSuccess;
     }
 
+    public static function deleteImagePath($id){
+        $conn = DbConnect::dbConnect();
+        $isSuccess = false;
+
+        try{
+            $sql = "delete from ad_image where ad_id = '$id'";
+            $result = mysqli_query($conn, $sql);
+
+            if($result){
+                $isSuccess = true;
+            }else $isSuccess = false;
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $isSuccess;
+    }
+
     public static function updatePost($id, $bed, $bath, $category, $phone, $price, $description, $location, $latitude, $longitude){
         $conn = DbConnect::dbConnect();
         $isSuccess = false;

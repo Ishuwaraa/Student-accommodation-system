@@ -14,7 +14,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style/style.css">
-<title>Add a Post</title>
+<title>Student Accommodation - NSBM</title>
 
 <style>
     body {
@@ -179,7 +179,7 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         </table>
 
 
-        <label for="location">Location: <span style="color: red">*</span></label>
+        <label for="location">Title: <span style="color: red">*</span></label>
         <input type="text" id="location" name="location" required><br>
 
         <label for="beds">Beds: <span style="color: red">*</span></label>

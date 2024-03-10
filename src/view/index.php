@@ -11,7 +11,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Realvine - Choose your dream place</title>
+  <title>Student Accommodation - NSBM</title>
+  <!-- <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico"> -->
   <link rel="stylesheet" href="../../public/styles/index.css">
 
 
@@ -130,7 +131,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="blogs">
         <div class="post container">
 
           <?php 
@@ -143,7 +144,6 @@
               <img src="../../assets/blogimages/<?php echo $blog->image?>" alt="" class="post-img">
               <br>
               <a href="#" class="post-title"><?php echo $blog->title ?></a>
-              <!-- <span class="post-date">12 Feb 2022</span> -->
               <div class="post-description-container">
                   <p class="post-description"><?php echo $blog->description ?></p>
               </div>

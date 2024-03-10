@@ -35,21 +35,21 @@
     <div class="container">
 
       <a href="index.php" class="logo">
-        <ion-icon name="business-outline"></ion-icon> Accommodation
+        <ion-icon name="business-outline"></ion-icon> Student Accommodation
       </a>
 
       <nav class="navbar container" data-navbar>
         <ul class="navbar-list">
-          <li>
+          <!-- <li>
             <a href="test.php" class="navbar-link" data-nav-link>Test</a>
           </li>
           <li>
             <a href="testcard.php" class="navbar-link" data-nav-link>Testcards</a>
-          </li>
+          </li> -->
 
           <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] !== 'admin') {?>
           <li>
-            <a href="home.php" class="navbar-link" data-nav-link>Home</a>
+            <a href="home.php" class="navbar-link" data-nav-link>Map</a>
           </li>
           <?php } ?>
 
@@ -73,6 +73,10 @@
           
           <li>
             <a href="index.php#aboutus" class="navbar-link" data-nav-link>About Us</a>
+          </li>
+
+          <li>
+            <a href="index.php#blogs" class="navbar-link" data-nav-link>Blogs</a>
           </li>
         </ul>
       </nav>
