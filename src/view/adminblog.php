@@ -97,13 +97,13 @@
                     <button onclick="window.location.href = 'editblog.php?id=<?php echo $blog->getId() ?>'" class="change-blog-btn">Edit Blog</button>
                     <button onclick="if (confirm('Are you sure you want to delete this blog?')) { window.location.href = '../controller/deleteBlogController.php?id=<?php echo $blog->getId()?>'; }" class="delete-blog-btn">Delete Blog</button>
                 </div>
-                <img src="../../assets/blogimages/<?php echo $blog->image ?>" alt="" class="post-img">
+                <img src="../../assets/blogimages/<?php echo $blog->getImage() ?>" alt="" class="post-img">
                 <br>
                 <!-- <input type="text" value="<php echo $blog->getId() ?>" style="display: none;"> -->
-                <a href="#" class="post-title"><?php echo $blog->title ?></a>
+                <a href="#" class="post-title"><?php echo $blog->getTitle() ?></a>
                 <span class="edit-icon"><ion-icon name="create-outline"></ion-icon></span>
                 <div class="post-description-container">
-                    <p class="post-description"><?php echo $blog->description ?></p>
+                    <p class="post-description"><?php echo $blog->getDescription() ?></p>
                 </div>
             </div>
             <?php } ?>
@@ -115,37 +115,37 @@
 <?php include_once('footer.html') ?>
 
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    var editIcons = document.querySelectorAll('.edit-icon');
-    var editDropdowns = document.querySelectorAll('.edit-dropdown');
+    document.addEventListener("DOMContentLoaded", function () {
+        var editIcons = document.querySelectorAll('.edit-icon');
+        var editDropdowns = document.querySelectorAll('.edit-dropdown');
 
-    // Function to toggle dropdown visibility
-    function toggleDropdown(index) {
-        if (editDropdowns[index].style.display === 'block') {
-            editDropdowns[index].style.display = 'none';
-        } else {
-            editDropdowns[index].style.display = 'block';
-        }
-    }
-
-    // Click event listener for the edit icon of each post
-    editIcons.forEach((editIcon, index) => {
-        editIcon.addEventListener('click', function (event) {
-            event.stopPropagation(); // Prevent the event from bubbling up to the document
-            toggleDropdown(index);
-        });
-    });
-
-    // Click event listener for the document to hide dropdown when clicking outside
-    document.addEventListener('click', function (event) {
-        editDropdowns.forEach((dropdown) => {
-            var isClickInside = dropdown.contains(event.target);
-            if (!isClickInside) {
-                dropdown.style.display = 'none';
+        // Function to toggle dropdown visibility
+        function toggleDropdown(index) {
+            if (editDropdowns[index].style.display === 'block') {
+                editDropdowns[index].style.display = 'none';
+            } else {
+                editDropdowns[index].style.display = 'block';
             }
+        }
+
+        // Click event listener for the edit icon of each post
+        editIcons.forEach((editIcon, index) => {
+            editIcon.addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevent the event from bubbling up to the document
+                toggleDropdown(index);
+            });
+        });
+
+        // Click event listener for the document to hide dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            editDropdowns.forEach((dropdown) => {
+                var isClickInside = dropdown.contains(event.target);
+                if (!isClickInside) {
+                    dropdown.style.display = 'none';
+                }
+            });
         });
     });
-});
 
 </script>
 <!-- ionicon link -->

@@ -12,7 +12,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if($student){
             session_start();
-            // $student = new Student();
             $_SESSION['user'] = $student->getEmail();
             $_SESSION['user_type'] = 'student';
             $_SESSION['user_id'] = $student->getId();

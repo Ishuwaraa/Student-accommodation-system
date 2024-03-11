@@ -1,10 +1,10 @@
 <?php
 
     class Blog{
-        public $id;
-        public $title;
-        public $description;
-        public $image;
+        private $id;
+        private $title;
+        private $description;
+        private $image;
 
         public function __construct(){}
 

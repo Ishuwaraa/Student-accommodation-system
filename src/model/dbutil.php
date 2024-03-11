@@ -436,6 +436,7 @@ class DbUtil {
                     $adDetail->setLatitude($row['latitude']);
                     $adDetail->setLongitude($row['longitude']);
                     $adDetail->setRejectReason($row['reject_reason']);
+                    $adDetail->setLandlord($row['landlord_id']);
 
                     $adDetails[] = $adDetail;   //adding each row to the array
                 }
@@ -722,6 +723,34 @@ class DbUtil {
         return $stdRequests;
     }
 
+    public static function getStudentRequestJoin($stdId){
+        $conn = DbConnect::dbConnect();
+        $stdRequests = [];
+
+        try{
+            $sql = "select req.std_id, req.ad_id, ad.location, req.status, ad.price, ad.phone from student_request req 
+            inner join adpost ad on 
+            req.ad_id = ad.id where req.std_id = '$stdId' ";
+            $result = mysqli_query($conn, $sql);
+
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $stdRequest = new StudentRequest();
+                    $stdRequest->setAdId($row['ad_id']);
+                    $stdRequest->setLocation($row['location']);
+                    $stdRequest->setPrice($row['price']);
+                    $stdRequest->setLandlordContact($row['phone']);
+                    $stdRequest->setStatus($row['status']);
+
+                    $stdRequests[] = $stdRequest;   //adding each row to the array
+                }
+            }
+        }catch (mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $stdRequests;
+    }
+
     public static function updateStdRequest($id, $status){
         $conn = DbConnect::dbConnect();
         $isSuccess = false;
@@ -737,6 +766,26 @@ class DbUtil {
         }
         return $isSuccess;
     }
+
+    public static function getRelatedAdIds($landlordId){
+        $conn = DbConnect::dbConnect();
+        $adIds = [];
+    
+        try{
+            $sql = "select id from adpost where landlord_id = '$landlordId'";
+            $result = mysqli_query($conn, $sql);
+    
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $adIds[] = $row['id'];
+                }
+            }
+        }catch(mysqli_sql_exception $e){
+            echo "<script>alert('An error occurred. Try again later');</script>";
+        }
+        return $adIds;
+    }
 }
+
 
 ?>

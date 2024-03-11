@@ -1,19 +1,19 @@
 <?php
 
     class AdDetails {
-        public $id;
-        public $bed;
-        public $bath;
-        public $category;
-        public $phone;
-        public $price;
-        public $description;
-        public $location;
-        public $status;
-        public $landlord;
-        public $latitude;
-        public $longitude;
-        public $rejectReason;
+        private $id;
+        private $bed;
+        private $bath;
+        private $category;
+        private $phone;
+        private $price;
+        private $description;
+        private $location;
+        private $status;
+        private $landlord;
+        private $latitude;
+        private $longitude;
+        private $rejectReason;
 
         public function __construct(){}
 

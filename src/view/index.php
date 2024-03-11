@@ -57,7 +57,7 @@
             <div class="hero-content">
               <h1 class="h1 hero-title">Accommodation  for <span class="span"> NSBM  </span> Student</h1>
               <p class="hero-text">
-                A great plateform to buy, sell and rent your properties without any agent or commisions.
+                A great plateform to buy and rent your properties without any agent or commisions.
               </p>
             </div>
           </div>
@@ -67,10 +67,10 @@
       <!--  #SERVICE -->
       <section class="section service" aria-label="service">
         <div class="container">
-          <h2 class="h2 section-title">How It Works</h2>
-          <p class="section-text">
+          <h2 class="h2 section-title">How It Works</h2><br>
+          <!-- <p class="section-text">
             A great plateform to buy, sell and rent your properties without any agent or commisions.
-          </p>
+          </p> -->
           <ul class="service-list">
             <li>
               <div class="service-card">
@@ -141,11 +141,11 @@
           ?>        
             <!-- Post 1 -->
             <div class="post-box food">
-              <img src="../../assets/blogimages/<?php echo $blog->image?>" alt="" class="post-img">
+              <img src="../../assets/blogimages/<?php echo $blog->getImage()?>" alt="" class="post-img">
               <br>
-              <a href="#" class="post-title"><?php echo $blog->title ?></a>
+              <a href="#" class="post-title"><?php echo $blog->getTitle() ?></a>
               <div class="post-description-container">
-                  <p class="post-description"><?php echo $blog->description ?></p>
+                  <p class="post-description"><?php echo $blog->getDescription() ?></p>
               </div>
             </div>
           <?php } ?>   

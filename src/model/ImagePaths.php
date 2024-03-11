@@ -1,7 +1,7 @@
 <?php
 
     class ImagePaths{
-        public $image;
+        private $image;
 
         public function __construct(){}
         

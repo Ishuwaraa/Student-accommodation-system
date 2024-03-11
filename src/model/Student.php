@@ -1,10 +1,10 @@
 <?php
 
 class Student {
-    public $id;
-    public $name;
-    public $email;
-    public $contact;
+    private $id;
+    private $name;
+    private $email;
+    private $contact;
 
     public function __construct(){}
 

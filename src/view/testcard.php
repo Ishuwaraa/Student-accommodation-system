@@ -1,6 +1,10 @@
 <?php
     session_start();
     require_once('../model/dbutil.php');
+
+    if(!isset($_SESSION['user'])){
+        header('Location: login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +24,10 @@
             foreach($posts as $post){
     ?>
         <div>
-            <p>ad id: <?php echo $post->id?></p>
-            <p>landlord id: <?php echo $post->landlord?></p>
-            status: <?php echo $post->status?>
-            <a href="card.php?id=<?php echo $post->id?>">view post</a>
+            <p>ad id: <?php echo $post->getId()?></p>
+            <p>landlord id: <?php echo $post->getLandlord()?></p>
+            status: <?php echo $post->getStatus()?>
+            <a href="card.php?id=<?php echo $post->getId()?>">view post</a>
         </div><br>
     <?php }} ?>
 
@@ -33,10 +37,10 @@
             foreach($posts as $post){
     ?>
         <div>
-            <p>ad id: <?php echo $post->id?></p>
-            <p>landlord id: <?php echo $post->landlord?></p>
-            status: <?php echo $post->status?>
-            <a href="card.php?id=<?php echo $post->id?>&landlord=<?php echo $post->landlord ?>">view post</a>
+            <p>ad id: <?php echo $post->getId()?></p>
+            <p>landlord id: <?php echo $post->getLandlord()?></p>
+            status: <?php echo $post->getStatus()?>
+            <a href="card.php?id=<?php echo $post->getId()?>&landlord=<?php echo $post->getLandlord() ?>">view post</a>
         </div><br>
     <?php }} ?>
 </body>

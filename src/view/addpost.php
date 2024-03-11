@@ -33,12 +33,12 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         color: #34CC33;
     }
     table {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    table-layout: fixed;
-}
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        table-layout: fixed;
+    }
 
     label {
         font-weight: bold;
@@ -105,12 +105,9 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         margin-top: 10px;
         margin-bottom: 10px;
     }
-
     #photos1-container {
-
-    margin-left: 90px;
+        margin-left: 90px;
     }
-
 
 </style>
 </head>

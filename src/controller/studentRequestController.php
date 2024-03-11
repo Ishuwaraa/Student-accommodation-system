@@ -8,18 +8,18 @@
         $landlord_id = $_GET['landlord'];
 
         $stdDetails = DbUtil::getStudentDetails($std_id);
-        $std_name = $stdDetails->name;
-        $std_contact = $stdDetails->contact;
+        $std_name = $stdDetails->getName();
+        $std_contact = $stdDetails->getContact();
 
         if(!(empty($std_name) && empty($std_contact))){
             $isSuccess = DbUtil::addStudentRequest($ad_id, $std_id, $landlord_id, $std_name, $std_contact);
 
             if($isSuccess){
                 echo "<script>alert('Request added successfully')</script>";
-                echo "<script>window.setTimeout(function(){window.location.href='../view/testcard.php'}, 500);</script>";
+                echo "<script>window.setTimeout(function(){window.location.href='../view/home.php'}, 500);</script>";
             }else{
                 echo "<script>alert('Sorry, could not add your request.')</script>";
-                echo "<script>window.setTimeout(function(){window.location.href='../view/testcard.php'}, 500);</script>";
+                echo "<script>window.setTimeout(function(){window.location.href='../view/home.php'}, 500);</script>";
             }
         }
 

@@ -127,7 +127,6 @@
 <div class="container">
     <h2>Add Blog Post</h2>
     <form action="../controller/addBlogController.php" method="post" enctype="multipart/form-data">
-
         <table>
             <tr>
                 <td><label for="photos">Upload image:</label></td>

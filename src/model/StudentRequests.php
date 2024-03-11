@@ -1,10 +1,13 @@
 <?php
     class StudentRequest {
-        public $id;
-        public $ad_id;
-        public $std_name;
-        public $std_contact;
-        public $status;
+        private $id;
+        private $ad_id;
+        private $std_name;
+        private $std_contact;
+        private $status;
+        private $location;
+        private $price;
+        private $landlord_contact;
 
         public function __construct(){}
 
@@ -23,6 +26,15 @@
         public function setStatus($status) {
             $this->status = $status;
         }
+        public function setLocation($location){
+            $this->location = $location;
+        }
+        public function setPrice($price){
+            $this->price = $price;
+        }
+        public function setLandlordContact($contact){
+            $this->landlord_contact = $contact;
+        }
 
         public function getId() {
             return $this->id;
@@ -38,6 +50,15 @@
         }
         public function getStatus() {
             return $this->status;
+        }
+        public function getLocation(){
+            return $this->location;
+        }
+        public function getPrice(){
+            return $this->price;
+        }
+        public function getLandlordContact(){
+            return $this->landlord_contact;
         }
     }
 ?>
