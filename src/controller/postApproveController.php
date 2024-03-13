@@ -8,11 +8,11 @@
         $isSuccess = DbUtil::wardenApproval($cardId, 'approved', $description);
         if($isSuccess){
             echo "<script>alert('Post approved successfully.')</script>";
-            echo "<script>window.setTimeout(function(){window.location.href='../view/index.php'}, 500);</script>";
+            echo "<script>window.setTimeout(function(){window.location.href='../view/home.php'}, 500);</script>";
             // header('Location: ../view/index.php');
         }else{
             echo "<script>alert('Sorry, could not update the status.')</script>";
-            echo "<script>window.setTimeout(function(){window.location.href='../view/index.php'}, 500);</script>";
+            echo "<script>window.setTimeout(function(){window.location.href='../view/home.php'}, 500);</script>";
         }
     }elseif(isset($_POST['reject']) && isset($_POST['cardid'])){
         $cardId = $_POST['cardid'];
@@ -20,10 +20,10 @@
         $isSuccess = DbUtil::wardenApproval($cardId, 'rejected', $description);
         if($isSuccess){
             echo "<script>alert('Post rejected successfully.')</script>";
-            echo "<script>window.setTimeout(function(){window.location.href='../view/index.php'}, 500);</script>";
+            echo "<script>window.setTimeout(function(){window.location.href='../view/home.php'}, 500);</script>";
         }else{
             echo "<script>alert('Sorry, could not update the status.')</script>";
-            echo "<script>window.setTimeout(function(){window.location.href='../view/index.php'}, 500);</script>";
+            echo "<script>window.setTimeout(function(){window.location.href='../view/home.php'}, 500);</script>";
         }
     }
 ?>

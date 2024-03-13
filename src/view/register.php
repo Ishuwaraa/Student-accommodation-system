@@ -91,8 +91,8 @@
         <div class="col-md-6 right-box">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
-                     <h2>Welcome!</h2>
-                     <!-- <p>We are happy to have you back.</p> -->
+                     <h2>Hey there!</h2>
+                     <p>Let's get you signed up.</p>
                 </div>
                 <form action="../controller/registerController.php" method="post">
                     <label for="name" class="form-label">Name <span style="color: red">*</span></label>

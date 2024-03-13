@@ -187,7 +187,7 @@
           <h2 style="color: black;">Description</h2><br>
           <textarea placeholder="Description" id="description" name="description" required style="padding: 10px; padding-top: 20px"><?php echo $adDetail->getDescription() ?></textarea><br><br><br><br>
           
-          <div style="position: relative;">
+          <div style="position: relative; margin-bottom: 50px">
             <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
                 <?php if($_GET['landlord'] == $_SESSION['user_id']){ ?>
                     <button type="submit" style="margin-right: 5px;" class="btn btn-secondary"> Save Changes</button>
@@ -198,13 +198,6 @@
         <?php } ?>
         
     </form>
-
-
-      <hr class="line">
-      <div class="map">
-          <h3>Location on map</h3>  
-          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3947.666983691001!2d80.41028307470498!3d8.335848991700383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMjAnMDkuMSJOIDgwwrAyNCc0Ni4zIkU!5e0!3m2!1sen!2slk!4v1707666774021!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
     
   </div>
 

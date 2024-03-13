@@ -27,7 +27,8 @@
         //inserting images
         if($foreignId !== null){
             for($i = 0; $i < $totalFiles; $i++) {
-                $target_file = $target_dir . basename($_FILES["photos"]["name"][$i]);
+                $originalFileName = $_FILES["photos"]["name"][$i];
+                $target_file = $target_dir . basename($originalFileName);
                 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
                 $check = getimagesize($_FILES["photos"]["tmp_name"][$i]);
     
@@ -42,9 +43,16 @@
     
                 // Check if file already exists
                 if (file_exists($target_file)) {
-                    echo "<script>alert('Sorry, file already exists.')</script>";
-                    echo "<script>window.setTimeout(function(){window.location.href='../view/addpost.php'}, 500);</script>";
-                    $uploadOk = 0;
+                    // echo "<script>alert('Sorry, file already exists.')</script>";
+                    // echo "<script>window.setTimeout(function(){window.location.href='../view/addpost.php'}, 500);</script>";
+                    // $uploadOk = 0;
+                    $counter = 1;
+                    while(file_exists($target_file)){
+                        $newFileName = pathinfo($originalFileName, PATHINFO_FILENAME) . "_" . $counter . "." . $imageFileType;
+                        $target_file = $target_dir . $newFileName;
+                        $counter++;
+                    }
+
                 }
     
                 // Check file size
