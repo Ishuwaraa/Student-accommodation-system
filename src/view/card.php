@@ -90,6 +90,7 @@
       $adDetail = DbUtil::getOnePost($_GET['id']);  
       $latitude = $adDetail->getLatitude();
       $longitude = $adDetail->getLongitude();
+      $locationName = $adDetail->getLocation();
     ?>
 
     <h2>  
@@ -165,8 +166,8 @@
 
     <hr class="line">
     <div class="map">
-        <h3>Location on map</h3>  
-        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3947.666983691001!2d80.41028307470498!3d8.335848991700383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMjAnMDkuMSJOIDgwwrAyNCc0Ni4zIkU!5e0!3m2!1sen!2slk!4v1707666774021!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h3>Location on map </h3>  
+        <div id="map"style="width: 100%; height: 400px;"></div>
     </div>
     
   </div>
@@ -195,6 +196,25 @@
           var overlay = document.getElementById('overlay');
           overlay.style.display = 'none';
       }
+
+      function initMap() {
+        const latitude = <?php echo $latitude; ?>;
+        const longitude = <?php echo $longitude; ?>;
+        const locationName = '<?php echo $locationName;?>';
+        
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13, // Adjust the zoom level as needed
+            center: { lat: latitude, lng: longitude }, // Centered on the specified coordinates
+        });
+
+        // Create a marker at the specified coordinates
+        const marker = new google.maps.Marker({
+            position: { lat: latitude, lng: longitude },
+            map: map,
+            title: locationName //title for the marker
+        });
+      }
   </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeO69AAyaPeO5KxDmvtgPZ4goRcgMlUjY&callback=initMap" async defer></script>
 </body>
 </html>

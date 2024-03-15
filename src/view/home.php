@@ -137,7 +137,7 @@
 <body>
     <!-- #HEADER -->
     <?php include_once('header.php'); ?>
-    <br><br><br><div style="margin-bottom: -80px; text-align: center"><p style="color: red;">Note: click on the image to zoom in on the exact location.</p></div>
+    <br><br><br><div style="margin-bottom: -80px; text-align: center"><p style="color: red;">Note: click on the image to zoom in on the exact location. click on the marker to see the title</p></div>
     <div class="map-full-container">
         <div class="locations-container">
 
@@ -154,7 +154,7 @@
                             <div class="location-card">
                                 <img src="../../assets/images/<?php echo $imagePaths[0]->getImage() ?>" alt="New York City">
                                 <div class="location-card-details">
-                                    <h3><?php echo $post->getLocation() ?></h3>
+                                    <h3 id="location-title"><?php echo $post->getLocation() ?></h3>
                                     <p>Beds: <?php echo $post->getBed() ?></p>
                                     <p>Category: <?php echo $post->getCategory() ?></p>
                                     <p>Price: Rs.<?php echo $post->getPrice() ?></p>
@@ -178,7 +178,7 @@
                             <div class="location-card">
                                 <img src="../../assets/images/<?php echo $imagePaths[0]->getImage() ?>" alt="New York City">
                                 <div class="location-card-details">
-                                    <h3><?php echo $post->getLocation() ?></h3>
+                                    <h3 id="location-title"><?php echo $post->getLocation() ?></h3>
                                     <p>Beds: <?php echo $post->getBed() ?></p>
                                     <p>Category: <?php echo $post->getCategory() ?></p>
                                     <p>Price: Rs.<?php echo $post->getPrice() ?></p>
@@ -228,24 +228,35 @@
             const locationItems = document.querySelectorAll('#locationList .locations-item');
             locationItems.forEach(item => {
                 const [latitude, longitude] = item.getAttribute('onclick').match(/\d+\.\d+/g).map(Number);
+                const locationTitle = item.querySelector('#location-title').textContent;
+                console.log(locationTitle);
                 const marker = new google.maps.Marker({
                     position: { lat: latitude, lng: longitude },
                     map,
                     title: `${latitude}, ${longitude}`
                 });
+                
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div><h3>${locationTitle}</h3></div>`
+                });
+    
+                marker.addListener('click', () => {
+                    infoWindow.open(map, marker);
+                });
             });
-        }
+            }
+
 
         // Function to show location on map
-        function showLocationOnMap(latitude, longitude) {
-            const map = window.map;
-            map.setCenter({ lat: latitude, lng: longitude });
-            new google.maps.Marker({
-                position: { lat: latitude, lng: longitude },
-                map,
-                title: `${latitude}, ${longitude}`
-            });
-        }
+        // function showLocationOnMap(latitude, longitude) {
+        //     const map = window.map;
+        //     map.setCenter({ lat: latitude, lng: longitude });
+        //     new google.maps.Marker({
+        //         position: { lat: latitude, lng: longitude },
+        //         map,
+        //         title: `${latitude}, ${longitude}`
+        //     });
+        // }
 
         // Function to show location on map and zoom in/out
         function showLocationOnMap(latitude, longitude) {

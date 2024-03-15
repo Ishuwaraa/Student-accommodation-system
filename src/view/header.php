@@ -66,6 +66,9 @@
             <li>
               <a href="adminblog.php" class="navbar-link" data-nav-link>Edit blog</a>
             </li>
+            <li>
+              <a href="adminRegister.php" class="navbar-link" data-nav-link>User registration</a>
+            </li>
           <?php }?>
           
           <?php if(isset($_SESSION['user']) && ($_SESSION['user_type'] == 'student' || $_SESSION['user_type'] == 'landlord')){ ?>

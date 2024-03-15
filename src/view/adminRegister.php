@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!(isset($_SESSION['user']) && $_SESSION['user_type'] == 'admin')){
+        session_destroy();
+        header('Location: login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,6 +123,7 @@
                                 <option value="">Choose...</option>
                                 <option value="student">Student</option>
                                 <option value="landlord">Landlord</option>
+                                <option value="warden">Warden</option>
                             </select>
                         </div>
                     </div>

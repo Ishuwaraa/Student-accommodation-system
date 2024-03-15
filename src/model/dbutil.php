@@ -210,12 +210,23 @@ class DbUtil {
         $isSuccess = false;
 
         try{
-            $sql = "update student set name = '$name', email = '$email', contact = '$contact' where id = '$id' ";
-            $result = mysqli_query($conn, $sql);
+            $sql = "update student set name = ?, email = ?, contact = ? where id = ? ";
 
-            if($result){
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssi", $name, $email, $contact, $id);
+
+            // Set the parameters and execute the statement
+            $name = $name;
+            $email = $email;
+            $contact = $contact;
+            $id = $id;
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
                 $isSuccess = true;
-            }else $isSuccess = false;
+            } else {
+                $isSuccess = false;
+            }
         }catch(mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
@@ -227,12 +238,23 @@ class DbUtil {
         $isSuccess = false;
 
         try{
-            $sql = "update landlord set name = '$name', email = '$email', contact = '$contact' where id = '$id' ";
-            $result = mysqli_query($conn, $sql);
+            $sql = "update landlord set name = ?, email = ?, contact = ? where id = ? ";
 
-            if($result){
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssi", $name, $email, $contact, $id);
+
+            // Set the parameters and execute the statement
+            $name = $name;
+            $email = $email;
+            $contact = $contact;
+            $id = $id;
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
                 $isSuccess = true;
-            }else $isSuccess = false;
+            } else {
+                $isSuccess = false;
+            }
         }catch(mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
@@ -328,14 +350,28 @@ class DbUtil {
         $foreignId = null;
 
         try{
-            $sql = "insert into adpost values (0, '$bed', '$baths', '$category', '$phone', '$price', '$description', '$location', 'pending', '$id', ' ', '$latitude', '$longitude')";
-            $result = mysqli_query($conn, $sql);
+            $sql = "insert into adpost values (0, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ' ', ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssssssidd", $bed, $baths, $category, $phone, $price, $description, $location, $id, $latitude, $longitude);
 
-            if($result){
-                // $row = mysqli_fetch_assoc($result);
-                // $foreignId = $row['id'];
+            // Set the parameters and execute the statement
+            $bed = $bed;
+            $baths = $baths;
+            $category = $category;
+            $phone = $phone;
+            $price = $price;
+            $description = $description;
+            $location = $location; 
+            $id = $id;
+            $latitude = $latitude;
+            $longitude = $longitude;   
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
                 $foreignId = mysqli_insert_id($conn);   //returns the id of an auto incremented row
-            }else $foreignId = null;
+            } else {
+                $foreignId = null;
+            }
         }catch (mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
@@ -398,13 +434,27 @@ class DbUtil {
         $isSuccess = false;
 
         try{
-            $sql = "update adpost set bed = '$bed', baths = '$bath', category = '$category', phone = '$phone', price = '$price', 
-            description = '$description', location = '$location', latitude = '$latitude', longitude = '$longitude' where id = '$id' ";
-            $result = mysqli_query($conn, $sql);
+            $sql = "update adpost set bed = ?, baths = ?, category = ?, phone = ?, price = ?, 
+            description = ?, location = ?, latitude = ?, longitude = ? where id = ? ";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssssssddi", $bed, $bath, $category, $phone, $price, $description, $location, $latitude, $longitude, $id);
 
-            if($result){
+            // Set the parameters and execute the statement
+            $bed = $bed;
+            $bath = $bath;
+            $category = $category;
+            $phone = $phone;
+            $price = $price;
+            $description = $description;
+            $location = $location;
+            $latitude = $latitude;
+            $longitude = $longitude; 
+            $id = $id;
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
                 $isSuccess = true;
-            }else {
+            } else {
                 $isSuccess = false;
             }
         }catch(mysqli_sql_exception $e){
@@ -507,10 +557,21 @@ class DbUtil {
         $isSuccess = false;
 
         try{
-            $sql = "insert into admin_blog values (0, '$title', '$description', '$image') ";
-            $result = mysqli_query($conn, $sql);
-            if($result) $isSuccess = true;
-            else $isSuccess = false;
+            $sql = "insert into admin_blog values (0, ?, ?, ?) ";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sss", $title, $description, $image);
+
+            // Set the parameters and execute the statement
+            $title = $title;
+            $description = $description;
+            $image = $image;    
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                $isSuccess = true;
+            } else {
+                $isSuccess = false;
+            }
         }catch (mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
@@ -570,11 +631,22 @@ class DbUtil {
         $isSuccess = false;
 
         try{
-            $sql = "update admin_blog set title = '$title', description = '$description' where id = '$id' ";
-            $result = mysqli_query($conn, $sql);
+            $sql = "update admin_blog set title = ?, description = ? where id = ? ";
 
-            if($result) $isSuccess = true;
-            else $isSuccess = false;
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssi", $title, $description, $id);
+
+            // Set the parameters and execute the statement
+            $title = $title;
+            $description = $description;
+            $id = $id;
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                $isSuccess = true;
+            } else {
+                $isSuccess = false;
+            }
         }catch (mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
@@ -602,12 +674,28 @@ class DbUtil {
         $isSuccess = false;
 
         try{
-            $sql = "update adpost set status = '$status', reject_reason = '$description' where id = '$id' ";
-            $result = mysqli_query($conn, $sql);
+            //for sql injection and also to accept special characters like commas and stuff
+            $sql = "update adpost set status = ?, reject_reason = ? where id = ?";
 
-            if($result){
+            // Bind parameters to the statement
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssi", $status, $description, $id);   //string, string, int
+
+            // Set the parameters and execute the statement
+            $status = $status;
+            $description = $description;
+            $id = $id;
+            $stmt->execute();
+
+            // Check for success or handle errors as needed
+            if ($stmt->affected_rows > 0) {
                 $isSuccess = true;
-            }else $isSuccess = false;
+            } else {
+                $isSuccess = false;
+            }
+
+            // Close the statement
+            $stmt->close();
         }catch (mysqli_sql_exception $e){
             echo "<script>alert('An error occurred. Try again later');</script>";
         }
