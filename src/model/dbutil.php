@@ -124,13 +124,14 @@ class DbUtil {
         return $result;
     }
 
-    public static function checkRegisteredUser($email, $password, $type){
+    public static function checkRegisteredUser($email, $type){
         $conn = DbConnect::dbConnect();
         $isSuccess = false;
 
         try{
             if($type == 'student'){
-                $sql = "select * from student where email = '$email' and password = '$password' ";
+                // $sql = "select * from student where email = '$email' and password = '$password' ";
+                $sql = "select * from student where email = '$email' ";
                 $result = mysqli_query($conn, $sql);
 
                 if(mysqli_num_rows($result) > 0){
@@ -138,7 +139,7 @@ class DbUtil {
                 }else $isSuccess = false;
             }
             elseif($type == 'landlord'){
-                $sql = "select * from landlord where email = '$email' and password = '$password' ";
+                $sql = "select * from landlord where email = '$email' ";
                 $result = mysqli_query($conn, $sql);
 
                 if(mysqli_num_rows($result) > 0){
@@ -146,7 +147,7 @@ class DbUtil {
                 }else $isSuccess = false;
             }
             else{
-                $sql = "select * from warden where email = '$email' and password = '$password' ";
+                $sql = "select * from warden where email = '$email' ";
                 $result = mysqli_query($conn, $sql);
 
                 if(mysqli_num_rows($result) > 0){

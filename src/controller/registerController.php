@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $contact = filter_input(INPUT_POST, 'contact', FILTER_SANITIZE_NUMBER_INT);
 
     if($_POST['password'] == $_POST['conpassword']){
-        $isSuccess = DbUtil::checkRegisteredUser($email, $password, $type);
+        $isSuccess = DbUtil::checkRegisteredUser($email, $type);
         if(!$isSuccess){
             $result = DbUtil::registerUser($name, $email, $contact, $password, $type);
             if($result){
