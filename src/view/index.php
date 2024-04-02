@@ -66,7 +66,7 @@
 
       <!--  #SERVICE -->
       <section class="section service" aria-label="service">
-        <div class="container">
+        <div class="container" id="#howitworks">
           <h2 class="h2 section-title">How It Works</h2><br>
           <!-- <p class="section-text">
             A great plateform to buy, sell and rent your properties without any agent or commisions.
