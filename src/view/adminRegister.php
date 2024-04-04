@@ -4,6 +4,12 @@
         session_destroy();
         header('Location: login.php');
     }
+
+    if(isset($_SESSION['user'])){
+        if(time() - $_SESSION['login_time_stamp'] > 3600){
+            session_destroy();
+        }
+    }
 ?>
 
 <!DOCTYPE html>

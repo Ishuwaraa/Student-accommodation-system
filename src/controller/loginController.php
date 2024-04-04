@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['user'] = $student->getEmail();
             $_SESSION['user_type'] = 'student';
             $_SESSION['user_id'] = $student->getId();
+            $_SESSION['login_time_stamp'] = time();
             header("Location: ../view/index.php");
         }else {
             echo "<script>alert('Incorrect email or password')</script>";
@@ -29,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['user'] = $landlord->getEmail();
             $_SESSION['user_type'] = 'landlord';
             $_SESSION['user_id'] = $landlord->getId();
+            $_SESSION['login_time_stamp'] = time();
             header("Location: ../view/index.php");
         }else {
             echo "<script>alert('Incorrect email or password')</script>";
@@ -42,6 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['user'] = $email;
             $_SESSION['user_type'] = 'warden';
             $_SESSION['user_id'] = '101';
+            $_SESSION['login_time_stamp'] = time();
             header("Location: ../view/index.php");
         }else {
             echo "<script>alert('Incorrect email or password')</script>";
@@ -55,6 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['user'] = $email;
             $_SESSION['user_type'] = 'admin';
             $_SESSION['user_id'] = '1';
+            $_SESSION['login_time_stamp'] = time();
             header("Location: ../view/index.php");
         }else {
             echo "<script>alert('Incorrect email or password')</script>";

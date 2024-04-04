@@ -4,8 +4,12 @@
     require_once('../model/dbutil.php');
 
     if(isset($_SESSION['user'])){
-        if($_SESSION['user_type'] !== 'admin'){
-            header('Location: login.php');
+        if(time() - $_SESSION['login_time_stamp'] > 3600){
+            session_destroy();
+        }else{
+            if($_SESSION['user_type'] !== 'admin'){
+                header('Location: login.php');
+            }
         }
     }else{
         header('Location: login.php');

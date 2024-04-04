@@ -6,6 +6,9 @@
         header('Location: login.php');
     }else{
         if($_SESSION['user_type'] !== 'admin') header('Location: login.php');
+        if(time() - $_SESSION['login_time_stamp'] > 3600){
+            session_destroy();
+        }
     }
 ?>
 
