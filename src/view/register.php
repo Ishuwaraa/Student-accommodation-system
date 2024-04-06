@@ -84,7 +84,7 @@
             <div class="featured-image mb-3">
                 <img src="../../assets/images/loginbackground.jpg" class="img-fluid" style="width: 450px;">
             </div>
-            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Student Accommodation</p>
+            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Welcome to N-Home</p>
             <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Where Every Student Finds Their Home Away From Home!</small>
         </div> 
         

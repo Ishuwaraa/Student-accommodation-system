@@ -35,7 +35,7 @@
     <div class="container">
 
       <a href="index.php" class="logo">
-        <ion-icon name="business-outline"></ion-icon> Student Accommodation
+        <ion-icon name="business-outline"></ion-icon> N-Home
       </a>
 
       <nav class="navbar container" data-navbar>
@@ -49,7 +49,7 @@
 
           <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] !== 'admin') {?>
           <li>
-            <a href="home.php" class="navbar-link" data-nav-link>Map</a>
+            <a href="home.php" class="navbar-link" data-nav-link>Advertisements</a>
           </li>
           <?php } ?>
 

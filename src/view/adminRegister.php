@@ -98,15 +98,13 @@
             <div class="featured-image mb-3">
                 <img src="../../assets/images/loginbackground.jpg" class="img-fluid" style="width: 450px;">
             </div>
-            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Student Accommodation</p>
-            <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Where Every Student Finds Their Home Away From Home!</small>
+            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;"><span style="text-align: center;">N-Home</span> <br>User Registration</p>
         </div> 
         
         <div class="col-md-6 right-box">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
-                     <h2>Hey there!</h2>
-                     <p>Let's get you signed up.</p>
+                     <h2>User Details</h2>
                 </div>
                 <form action="../controller/registerController.php" method="post">
                     <label for="name" class="form-label">Name <span style="color: red">*</span></label>
@@ -157,9 +155,9 @@
                     </div>
                 </form>
             
-                <div class="row">
+                <!-- <div class="row">
                     <small>Already has an account? <a href="login.php">Sign In</a></small>
-                </div>
+                </div> -->
           </div>
        </div> 
     </div>

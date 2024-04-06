@@ -128,7 +128,7 @@
       </li>
       <li>
           <ion-icon class="icon-green" name="pricetag-outline"></ion-icon>
-          <label for="price">Price:</label>
+          <label for="price">Price (Rs.):</label>
           <p>&nbsp;&nbsp;<?php echo $adDetail->getPrice() ?></p>
       </li>
     </ul>    
@@ -147,7 +147,7 @@
       ?>
 
             <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
-              <a href="../controller/studentRequestController.php?id=<?php echo $id ?>&std=<?php echo $std_id ?>&landlord=<?php echo $landlord_id ?>" style="margin-right: 5px;" class="btn btn-secondary">Request </a>
+              <a href="../controller/studentRequestController.php?id=<?php echo $id ?>&std=<?php echo $std_id ?>&landlord=<?php echo $landlord_id ?>" style="margin-right: 5px;" class="btn btn-secondary">Request Property</a>
             </div>
 
       <?php 
