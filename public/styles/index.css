@@ -134,18 +134,18 @@ display: -webkit-box;
   font-size: 1.2em; /* Adjust as needed */
 }
 .about-section{
-    background: url(../../assets/images/aboutus.jpg) no-repeat left;
-    background-size: 55%;
+    background: url(../../assets/images/aboutus1.jpg) no-repeat left;
+    background-size: 50%;
     background-color: #fdfdfd;
     overflow: hidden;
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .inner-container{
     width: 55%;
     float: right;
     background-color: #fdfdfd;
-    padding: 150px;
+    padding: 75px;
 }
 
 .inner-container h1{
@@ -675,16 +675,16 @@ display: -webkit-box;
   
   @keyframes slideshow {
     0%, 100% {
-      background-image: url("../../assets/images/property-1.jpg");
+      background-image: url("../../assets/images/nsbm1.jpg");
     }
     25% {
-      background-image: url("../../assets/images/property-5.jpg");
+      background-image: url("../../assets/images/nsbm2.jpg");
     }
     50% {
-      background-image: url("../../assets/images/property-2.jpg");
+      background-image: url("../../assets/images/nsbm1.jpg");
     }
     75% {
-      background-image: url("../../assets/images/property-3.jpg");
+      background-image: url("../../assets/images/nsbm2.jpg");
     }
   }
   
@@ -716,7 +716,9 @@ display: -webkit-box;
     color: var(--white_70);
     font-size: var(--fs-3);
     line-height: 1.4;
-  }
+    text-align: center; /* Center-align the text */
+}
+
   
   .hero-form-wrapper {
     background-color: var(--white);
