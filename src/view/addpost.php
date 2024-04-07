@@ -6,6 +6,12 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
     header('Location: login.php');
 }
 
+if(isset($_SESSION['user'])){
+    if(time() - $_SESSION['login_time_stamp'] > 3600){
+        session_destroy();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +39,12 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         color: #34CC33;
     }
     table {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    table-layout: fixed;
-}
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        table-layout: fixed;
+    }
 
     label {
         font-weight: bold;
@@ -105,12 +111,9 @@ if(!($_SESSION['user_type'] == 'landlord' && isset($_SESSION['user']))){
         margin-top: 10px;
         margin-bottom: 10px;
     }
-
     #photos1-container {
-
-    margin-left: 90px;
+        margin-left: 90px;
     }
-
 
 </style>
 </head>

@@ -10,6 +10,11 @@
         session_destroy();
         header("Location: login.php");
     }
+    if(isset($_SESSION['user'])){
+        if(time() - $_SESSION['login_time_stamp'] > 3600){
+            session_destroy();
+        }
+    }
 
 ?> 
 
@@ -137,7 +142,7 @@
 <body>
     <!-- #HEADER -->
     <?php include_once('header.php'); ?>
-
+    <br><br><br><div style="margin-bottom: -80px; text-align: center"><p style="color: red;">Note: click on the image to zoom in on the exact location. click on the marker to see the title</p></div>
     <div class="map-full-container">
         <div class="locations-container">
 
@@ -147,19 +152,19 @@
 
                     <?php $posts = DbUtil::getAllPosts();
                             foreach($posts as $post){
-                                $imagePaths = DbUtil::getImagePath($post->id);
+                                $imagePaths = DbUtil::getImagePath($post->getId());
                     ?>
-                        <li class="locations-item" onclick="showLocationOnMap(<?php echo $post->latitude ?>, <?php echo $post->longitude ?>)">
+                        <li class="locations-item" onclick="showLocationOnMap(<?php echo $post->getLatitude() ?>, <?php echo $post->getLongitude() ?>)">
                 
                             <div class="location-card">
-                                <img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" alt="New York City">
+                                <img src="../../assets/images/<?php echo $imagePaths[0]->getImage() ?>" alt="New York City">
                                 <div class="location-card-details">
-                                    <h3><?php echo $post->location ?></h3>
-                                    <p>Beds: <?php echo $post->bed ?></p>
-                                    <p>Category: <?php echo $post->category ?></p>
-                                    <p>Price: Rs.<?php echo $post->price ?></p>
-                                    <p>Status: <?php echo $post->status ?></p>
-                                    <a href="card.php?id=<?php echo $post->id?>" style="text-decoration: underline">View details</a>
+                                    <h3 id="location-title"><?php echo $post->getLocation() ?></h3>
+                                    <p>Beds: <?php echo $post->getBed() ?></p>
+                                    <p>Category: <?php echo $post->getCategory() ?></p>
+                                    <p>Price: Rs.<?php echo $post->getPrice() ?></p>
+                                    <p>Status: <?php echo $post->getStatus() ?></p>
+                                    <a href="card.php?id=<?php echo $post->getId()?>" style="text-decoration: underline">View details</a>
                                 </div>
                             </div>
                         </li>
@@ -171,19 +176,21 @@
 
                     <?php $posts = DbUtil::getApprovedPosts();
                             foreach($posts as $post){
-                                $imagePaths = DbUtil::getImagePath($post->id);
+                                $imagePaths = DbUtil::getImagePath($post->getId());
                     ?>
-                        <li class="locations-item" onclick="showLocationOnMap(<?php echo $post->latitude ?>, <?php echo $post->longitude ?>)">
+                        <li class="locations-item" onclick="showLocationOnMap(<?php echo $post->getLatitude() ?>, <?php echo $post->getLongitude() ?>)">
                 
                             <div class="location-card">
-                                <img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" alt="New York City">
+                                <img src="../../assets/images/<?php echo $imagePaths[0]->getImage() ?>" alt="New York City">
                                 <div class="location-card-details">
-                                    <h3><?php echo $post->location ?></h3>
-                                    <p>Beds: <?php echo $post->bed ?></p>
-                                    <p>Category: <?php echo $post->category ?></p>
-                                    <p>Price: Rs.<?php echo $post->price ?></p>
+                                    <h3 id="location-title"><?php echo $post->getLocation() ?></h3>
+                                    <p>Beds: <?php echo $post->getBed() ?></p>
+                                    <p>Category: <?php echo $post->getCategory() ?></p>
+                                    <p>Price: Rs.<?php echo $post->getPrice() ?></p>
                                     <?php if($_SESSION['user_type'] == 'student') { ?>
-                                        <a href="card.php?id=<?php echo $post->id?>&landlord=<?php echo $post->landlord ?>" style="text-decoration: underline">View details</a>
+                                        <a href="card.php?id=<?php echo $post->getId()?>&landlord=<?php echo $post->getLandlord() ?>" style="text-decoration: underline">View details</a>
+                                    <?php }elseif($_SESSION['user_type'] == 'landlord') { ?>
+                                        <a href="card.php?id=<?php echo $post->getId() ?>" style="text-decoration: underline">View details</a>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -191,7 +198,6 @@
                     <?php } ?>
                 </ul>
             <?php } ?>
-
             
         </div>
         <div class="map-container" id="map"></div>
@@ -227,24 +233,35 @@
             const locationItems = document.querySelectorAll('#locationList .locations-item');
             locationItems.forEach(item => {
                 const [latitude, longitude] = item.getAttribute('onclick').match(/\d+\.\d+/g).map(Number);
+                const locationTitle = item.querySelector('#location-title').textContent;
+                console.log(locationTitle);
                 const marker = new google.maps.Marker({
                     position: { lat: latitude, lng: longitude },
                     map,
                     title: `${latitude}, ${longitude}`
                 });
+                
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div><h3>${locationTitle}</h3></div>`
+                });
+    
+                marker.addListener('click', () => {
+                    infoWindow.open(map, marker);
+                });
             });
-        }
+            }
+
 
         // Function to show location on map
-        function showLocationOnMap(latitude, longitude) {
-            const map = window.map;
-            map.setCenter({ lat: latitude, lng: longitude });
-            new google.maps.Marker({
-                position: { lat: latitude, lng: longitude },
-                map,
-                title: `${latitude}, ${longitude}`
-            });
-        }
+        // function showLocationOnMap(latitude, longitude) {
+        //     const map = window.map;
+        //     map.setCenter({ lat: latitude, lng: longitude });
+        //     new google.maps.Marker({
+        //         position: { lat: latitude, lng: longitude },
+        //         map,
+        //         title: `${latitude}, ${longitude}`
+        //     });
+        // }
 
         // Function to show location on map and zoom in/out
         function showLocationOnMap(latitude, longitude) {

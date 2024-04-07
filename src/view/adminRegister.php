@@ -1,3 +1,17 @@
+<?php
+    session_start();
+    if(!(isset($_SESSION['user']) && $_SESSION['user_type'] == 'admin')){
+        session_destroy();
+        header('Location: login.php');
+    }
+
+    if(isset($_SESSION['user'])){
+        if(time() - $_SESSION['login_time_stamp'] > 3600){
+            session_destroy();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,15 +98,13 @@
             <div class="featured-image mb-3">
                 <img src="../../assets/images/loginbackground.jpg" class="img-fluid" style="width: 450px;">
             </div>
-            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Welcome to N-Home</p>
-            <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Where Every Student Finds Their Home Away From Home!</small>
+            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;"><span style="text-align: center;">N-Home</span> <br>User Registration</p>
         </div> 
         
         <div class="col-md-6 right-box">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
-                     <h2>Hey there!</h2>
-                     <p>Let's get you signed up.</p>
+                     <h2>User Details</h2>
                 </div>
                 <form action="../controller/registerController.php" method="post">
                     <label for="name" class="form-label">Name <span style="color: red">*</span></label>
@@ -115,6 +127,7 @@
                                 <option value="">Choose...</option>
                                 <option value="student">Student</option>
                                 <option value="landlord">Landlord</option>
+                                <option value="warden">Warden</option>
                             </select>
                         </div>
                     </div>
@@ -142,9 +155,9 @@
                     </div>
                 </form>
             
-                <div class="row">
+                <!-- <div class="row">
                     <small>Already has an account? <a href="login.php">Sign In</a></small>
-                </div>
+                </div> -->
           </div>
        </div> 
     </div>

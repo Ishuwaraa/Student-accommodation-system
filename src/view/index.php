@@ -55,9 +55,10 @@
         <div class="container">
           <div class="hero-bg">
             <div class="hero-content">
-              <h1 class="h1 hero-title">Accommodation  for <span class="span"> NSBM  </span> Student</h1>
+              <h1 class="h1 hero-title">Welcome to <span class="span"> N-Home  </span></h1>
               <p class="hero-text">
-                A great plateform to buy, sell and rent your properties without any agent or commisions.
+                Accommodation finder for NSBM students.
+                
               </p>
             </div>
           </div>
@@ -66,11 +67,11 @@
 
       <!--  #SERVICE -->
       <section class="section service" aria-label="service">
-        <div class="container">
-          <h2 class="h2 section-title">How It Works</h2>
-          <p class="section-text">
+        <div class="container" id="#howitworks">
+          <h2 class="h2 section-title">How N-Home Works?</h2><br>
+          <!-- <p class="section-text">
             A great plateform to buy, sell and rent your properties without any agent or commisions.
-          </p>
+          </p> -->
           <ul class="service-list">
             <li>
               <div class="service-card">
@@ -79,7 +80,7 @@
                 </div>
                 <h3 class="h3 card-title">Evaluate Property</h3>
                 <p class="card-text">
-                  If the distribution of letters and 'words' is random, the reader will not be distracted from making.
+                "Thoroughly assess various properties showcased on our platform to find the perfect match for your accommodation needs effortlessly."
                 </p>
               </div>
             </li>
@@ -89,9 +90,9 @@
                 <div class="card-icon">
                   <ion-icon name="briefcase-outline"></ion-icon>
                 </div>
-                <h3 class="h3 card-title">Meeting with Agent</h3>
+                <h3 class="h3 card-title">Request Property</h3>
                 <p class="card-text">
-                  If the distribution of letters and 'words' is random, the reader will not be distracted from making.
+                "Simply select the property you like and request it with ease, making finding your ideal accommodation straightforward and stress-free."
                 </p>
               </div>
             </li>
@@ -103,7 +104,7 @@
                 </div>
                 <h3 class="h3 card-title">Close the Deal</h3>
                 <p class="card-text">
-                  If the distribution of letters and 'words' is random, the reader will not be distracted from making.
+                "Close the deal swiftly and securely, ensuring a seamless transition into your new accommodation with our hassle-free closing process."
                 </p>
               </div>
             </li>
@@ -119,7 +120,13 @@
           <div class="inner-container">
               <h1>About Us</h1>
               <p class="text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+              Welcome to N-Homes, your premier accommodation booking service tailored specifically for students of NSBM Green University. <br>
+
+At NSBM Green University, we prioritize sustainability and excellence in education. As an integral part of this esteemed institution, N-Homes is committed to providing a seamless and convenient platform for NSBM students to find suitable accommodation options.<br><br>
+
+Our website offers a curated selection of rental properties, ensuring that students can easily browse and book accommodations that meet their preferences and budgetary needs. Whether you're seeking a cozy apartment, a shared house, or a private room, N-Homes has you covered.<br><br>
+
+With our user-friendly interface and dedicated support team, navigating the process of securing accommodation has never been easier. We understand the importance of a comfortable living environment conducive to academic success, and we are here to ensure that every NSBM student finds their perfect home away from home.
               </p>
           </div>
       </div>
@@ -141,11 +148,11 @@
           ?>        
             <!-- Post 1 -->
             <div class="post-box food">
-              <img src="../../assets/blogimages/<?php echo $blog->image?>" alt="" class="post-img">
+              <img src="../../assets/blogimages/<?php echo $blog->getImage()?>" alt="" class="post-img">
               <br>
-              <a href="#" class="post-title"><?php echo $blog->title ?></a>
+              <a href="#" class="post-title"><?php echo $blog->getTitle() ?></a>
               <div class="post-description-container">
-                  <p class="post-description"><?php echo $blog->description ?></p>
+                  <p class="post-description"><?php echo $blog->getDescription() ?></p>
               </div>
             </div>
           <?php } ?>   

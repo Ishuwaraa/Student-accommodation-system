@@ -129,30 +129,21 @@
 <body>
 
 <div class="container">
-    <h2>Add Blog Post</h2>
-    <form action="../controller/addBlogController.php" method="post" enctype="multipart/form-data">
-        <table>
-            <tr>
-                <td><label for="photos">Upload image:</label></td>
-            </tr>
-            <tr>
-                <td style="background-color: #bbbaba; border-radius: 0.5rem;">
-                    <br>
-                    <div id="photos1-container" class="file-input-wrapper">
-                        <input type="file" id="photos1" name="blogimage" accept="image/*" required>
-                        <span class="file-input-label" style="display: flex; margin-bottom: 20px; margin-left: 100px;">click here to add</span>
-                        <div id="preview1" class="image-preview"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+    <h2>Edit Blog Post</h2>
 
-        <label for="location">Title: <span style="color: red">*</span></label>
-        <input type="text" id="title" name="title" required><br>
-        
-        <label for="description">Description: <span style="color: red">*</span></label>
-        <textarea id="description" name="description" rows="5" required style="resize: none;"></textarea><br>
-        <input type="submit" value="Post Blog" name="postblog" class="btn btn-secondary">
+    <form action="../controller/editBlogController.php" method="post" enctype="multipart/form-data">
+        <?php 
+            if(isset($_GET['id'])){
+                $blog = DbUtil::getOneBlog($_GET['id']); 
+        ?>            
+            <input type="text" value="<?php echo $_GET['id'] ?>" name="id" style="display: none;">
+            <label for="location">Title: <span style="color: red">*</span></label>
+            <input type="text" id="title" name="title" value="<?php echo $blog->getTitle() ?>" required><br>
+            
+            <label for="description">Description: <span style="color: red">*</span></label>
+            <textarea id="description" name="description" rows="5" required style="resize: none;"><?php echo $blog->getDescription() ?></textarea><br>
+            <input type="submit" value="Update blog" name="postblog" class="btn btn-secondary">
+        <?php } ?>
     </form>
 
     <!-- Preview area for images -->

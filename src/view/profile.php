@@ -7,258 +7,263 @@
         header("Location: login.php");
     }
 
+    if(isset($_SESSION['user'])){
+        if(time() - $_SESSION['login_time_stamp'] > 3600){
+            session_destroy();
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Accommodation - NSBM</title>
-<link rel="stylesheet" href="../../public/styles/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Accommodation - NSBM</title>
+    <link rel="stylesheet" href="../../public/styles/style.css">
 
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
-<!-- favicon -->
-<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-<!-- custom css link -->
-<link rel="stylesheet" href="src/style/style.css">
-<!-- google font link -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <!-- custom css link -->
+    <link rel="stylesheet" href="src/style/style.css">
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
-<style>
-  /* Styles for the profile */
-  .profile-container {
-      max-width: 1080px; /* Adjusted max-width */
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-  }
-
-  .profile-sidebar {
-      flex: 1;
-      padding: 0 20px;
-      border-right: 1px solid #ccc;
-  }
-
-  .profile-content {
-      flex: 2;
-      padding: 0 20px;
-  }
-
-  .profile-label {
-      display: block;
-      margin-bottom: 10px;
-  }
-  
-  .profile-input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-  }
-
-  /* Styles for the cart */
-  .cart-container {
-      max-width: 1080px; /* Adjusted max-width */
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .cart-heading {
-      margin-bottom: 10px;
-  }
-  .profile-sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.profile-sidebar li {
-    padding: 20px 0; /* Adjust padding as needed */
-}
-
-.profile-sidebar li a {
-    margin-left: 50px;
-    text-decoration: none;
-    color: black;
-}
-
-.profile-sidebar li.active {
-    background-color: #f0f0f0; /* Change the background color to highlight */
-}
-
-
-    .requests-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 10px; /* Adding rounded corners to the table */
-    overflow: hidden; /* Ensure that the border-radius is applied properly */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow effect */
-}
-
-.requests-table th, .requests-table td {
-    padding: 8px;
-    border: none; /* Remove border from table cells */
-}
-
-.requests-table th {
-    background-color: #f2f2f2;
-    text-align: left;
-    border-bottom: 1px solid #ddd; /* Add border only to table headers */
-}
-
-.approve-btn, .reject-btn {
-    padding: 6px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.approve-btn {
-    background-color: #34CC33;
-    color: white;
-    width: 90px;
-    border-radius: 10rem;
-}
-
-.reject-btn {
-    background-color: #f44336;
-    color: white;
-    margin-top: 5px;
-    width: 90px;
-    border-radius: 10rem;
-}
-.card {
-            position: relative;
-            display: flex;
-            width: 900px; /* Adjust the card width as needed */
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 250px;
-            margin-top: 10px;
-        }
-
-        .card img {
-            width: 350px; /* Adjust the image width as needed */
-            height: auto; /* Keep the image height unchanged */
-            object-fit: cover;
-            border-top-right-radius:10px ;
-            border-bottom-right-radius:10px ;
-        }
-
-        .card-content {
-            position: relative;
-            flex: 1;
+    <style>
+        /* Styles for the profile */
+        .profile-container {
+            max-width: 1080px; /* Adjusted max-width */
+            margin: 100px auto;
             padding: 20px;
-            margin-left: 40px;
-        }
-
-        .title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
-
-        .beds-baths {
-            margin-bottom: 10px;
-        }
-
-        .price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #4CAF50; /* Green color for price, you can change it */
-        }
-
-        .status {
-            font-size: 18px;
-            color: #888; /* Gray color for status, you can change it */
-        }
-        .vertical-line {
-            border-left: 1px solid black; /* You can adjust the width and color as needed */
-            height: 150px; /* Adjust the height of the line */
-            margin-top: 10px;
-            margin-left: 20px;
-        }
-        /* Style for ion-icons */
-        ion-icon {
-            font-size: 24px; /* Icon size */
-            color: #34CC33; /* Icon color */
-            padding-top: 10px;
-        }
-
-        .action-buttons {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
-            gap: 10px;
+        }
+
+        .profile-sidebar {
+            flex: 1;
+            padding: 0 20px;
+            border-right: 1px solid #ccc;
+        }
+
+        .profile-content {
+            flex: 2;
+            padding: 0 20px;
+        }
+
+        .profile-label {
+            display: block;
+            margin-bottom: 10px;
+        }
         
+        .profile-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
-        .action-buttons button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 10rem;
-            cursor: pointer;
-
+        /* Styles for the cart */
+        .cart-container {
+            max-width: 1080px; /* Adjusted max-width */
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .Change-button{
-            background-color: #34CC33; /* Red color for button background */
-            color: white; /* Text color */
-            transition: background-color 0.3s; 
+        .cart-heading {
+            margin-bottom: 10px;
         }
-        .Change-button:hover {
-            background-color: #FFD149; /* Darker red color on hover */
-        }
+        .profile-sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            }
 
-        /* Style for "Delete Ads" button */
-        .delete-button {
-            background-color: #ccc; /* Red color for button background */
-            color: white; /* Text color */
-            transition: background-color 0.3s; /* Smooth transition for background color change */
-        }
+            .profile-sidebar li {
+                padding: 20px 0; /* Adjust padding as needed */
+            }
 
-        /* Hover effect for "Delete Ads" button */
-        .delete-button:hover {
-            background-color: #f44336; /* Darker red color on hover */
-        }
+            .profile-sidebar li a {
+                margin-left: 50px;
+                text-decoration: none;
+                color: black;
+            }
 
-
-/* CSS for default card size */
-.card {
-    width: 900px; /* Default width */
-}
-
-/* Media query for smaller screens */
-@media screen and (max-width: 768px) {
-    .card {
-        width: 100%; /* Change width to 100% for smaller screens */
-    }
-}
-
-/* Media query for even smaller screens, e.g., mobile devices */
-@media screen and (max-width: 480px) {
-    .card {
-        width: 100%; /* Adjust width for smaller mobile screens */
-        /* You can also adjust other properties like font size or padding here */
-    }
-}
+            .profile-sidebar li.active {
+                background-color: #f0f0f0; /* Change the background color to highlight */
+            }
 
 
+                .requests-table {
+                width: 100%;
+                border-collapse: collapse;
+                border-radius: 10px; /* Adding rounded corners to the table */
+                overflow: hidden; /* Ensure that the border-radius is applied properly */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow effect */
+            }
+
+            .requests-table th, .requests-table td {
+                padding: 8px;
+                border: none; /* Remove border from table cells */
+            }
+
+            .requests-table th {
+                background-color: #f2f2f2;
+                text-align: left;
+                border-bottom: 1px solid #ddd; /* Add border only to table headers */
+            }
+
+            .requests-table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
 
 
+            .approve-btn, .reject-btn {
+                padding: 6px 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .approve-btn {
+                background-color: #34CC33;
+                color: white;
+                width: 90px;
+                border-radius: 10rem;
+            }
+
+            .reject-btn {
+                background-color: #f44336;
+                color: white;
+                margin-top: 5px;
+                width: 90px;
+                border-radius: 10rem;
+            }
+            .card {
+                    position: relative;
+                    display: flex;
+                    width: 900px; /* Adjust the card width as needed */
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    height: 250px;
+                    margin-top: 10px;
+                }
+
+                .card img {
+                    width: 350px; /* Adjust the image width as needed */
+                    height: auto; /* Keep the image height unchanged */
+                    object-fit: cover;
+                    border-top-right-radius:10px ;
+                    border-bottom-right-radius:10px ;
+                }
+
+                .card-content {
+                    position: relative;
+                    flex: 1;
+                    padding: 20px;
+                    margin-left: 40px;
+                }
+
+                .title {
+                    font-size: 22px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    margin-top: 20px;
+                }
+
+                .beds-baths {
+                    margin-bottom: 10px;
+                }
+
+                .price {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #4CAF50; /* Green color for price, you can change it */
+                }
+
+                .status {
+                    font-size: 18px;
+                    color: #888; /* Gray color for status, you can change it */
+                }
+                .vertical-line {
+                    border-left: 1px solid black; /* You can adjust the width and color as needed */
+                    height: 150px; /* Adjust the height of the line */
+                    margin-top: 10px;
+                    margin-left: 20px;
+                }
+                /* Style for ion-icons */
+                ion-icon {
+                    font-size: 24px; /* Icon size */
+                    color: #34CC33; /* Icon color */
+                    padding-top: 10px;
+                }
+
+                .action-buttons {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    display: flex;
+                    gap: 10px;
+                
+                }
+
+                .action-buttons button {
+                    padding: 5px 10px;
+                    border: none;
+                    border-radius: 10rem;
+                    cursor: pointer;
+
+                }
+                .Change-button{
+                    background-color: #34CC33; /* Red color for button background */
+                    color: white; /* Text color */
+                    transition: background-color 0.3s; 
+                }
+                .Change-button:hover {
+                    background-color: #FFD149; /* Darker red color on hover */
+                }
+
+                /* Style for "Delete Ads" button */
+                .delete-button {
+                    background-color: #ccc; /* Red color for button background */
+                    color: white; /* Text color */
+                    transition: background-color 0.3s; /* Smooth transition for background color change */
+                }
+
+                /* Hover effect for "Delete Ads" button */
+                .delete-button:hover {
+                    background-color: #f44336; /* Darker red color on hover */
+                }
 
 
-</style>
+            /* CSS for default card size */
+            .card {
+                width: 900px; /* Default width */
+            }
+
+            /* Media query for smaller screens */
+            @media screen and (max-width: 768px) {
+                .card {
+                    width: 100%; /* Change width to 100% for smaller screens */
+                }
+            }
+
+            /* Media query for even smaller screens, e.g., mobile devices */
+            @media screen and (max-width: 480px) {
+                .card {
+                    width: 100%; /* Adjust width for smaller mobile screens */
+                    /* You can also adjust other properties like font size or padding here */
+                }
+            }
+    </style>
 </head>
 <body>
 <?php include_once('header.php') ?>
@@ -276,8 +281,6 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <div class="profile-content" id="profileInfo">
         <div style="display: flex;">
             <h3 style="color: black;">Profile Info</h3>
-            <!-- Notification Button -->
-            <!-- <button onclick="showPopupNotification()" style="margin-left: 500px;"><ion-icon name="notifications-outline" style="color: rgb(79, 241, 34);"></ion-icon></button> -->
         </div>
         <br>
 
@@ -327,7 +330,7 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <div class="profile-content" id="deleteAcc" style="display: none;">
         <h3  style="color: black;">Delete Account</h3>
         <br>
-        <form action="../controller/deleteProfileController.php" method="post">
+        <form action="../controller/deleteProfileController.php" method="post" id="deleteForm">
             <label class="profile-label" for="currentPassword"><span style="color: red;">*</span>Enter Password:</label>
             <input class="profile-input" type="password" id="currentPassword" name="curpass" required>
             <button class="btn btn-secondary change-btn" type="submit" name="deleteacc" style="background-color: #f44336;">Delete Account</button>
@@ -353,14 +356,40 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                     foreach($stdRequests as $stdRequest){
                 ?>
                     <tr>
-                        <td><?php echo $stdRequest->ad_id ?></td>
-                        <td><?php echo $stdRequest->std_name ?></td>
-                        <td><?php echo $stdRequest->std_contact ?></td>
-                        <td><?php echo $stdRequest->status ?></td>
+                        <td><?php echo $stdRequest->getAdId() ?></td>
+                        <td><?php echo $stdRequest->getStdName() ?></td>
+                        <td><?php echo $stdRequest->getStdContact() ?></td>
+                        <td><?php echo $stdRequest->getStatus() ?></td>
                         <td style="text-align: center;">
-                            <a href="../controller/stdReqApproveController.php?id=<?php echo $stdRequest->id ?>&status=true" class="approve-btn">Approve</a>
-                            <a href="../controller/stdReqApproveController.php?id=<?php echo $stdRequest->id ?>&status=false" class="reject-btn">Reject</a>
+                            <a href="../controller/stdReqApproveController.php?id=<?php echo $stdRequest->getId() ?>&status=true" class="approve-btn">Approve</a>
+                            <a href="../controller/stdReqApproveController.php?id=<?php echo $stdRequest->getId() ?>&status=false" class="reject-btn">Reject</a>
                         </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div><br>
+<?php } elseif($_SESSION['user_type'] == 'student') {?>
+    <div class="cart-container" style="margin-top: -50px;">
+        <h2 class="cart-heading" style="color: black;">My Requests</h2>
+        <table class="requests-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price (Rs.)</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $stdRequests = DbUtil::getStudentRequestJoin($_SESSION['user_id']);
+                    foreach($stdRequests as $stdRequest){
+                ?>
+                    <tr>
+                        <td><?php echo $stdRequest->getLocation() ?></td>
+                        <td><?php echo $stdRequest->getPrice() ?></td>
+                        <td><?php echo $stdRequest->getLandlordContact() ?></td>
+                        <td><?php echo $stdRequest->getStatus() ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -369,165 +398,54 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <?php } ?>
 
 <?php if($_SESSION['user_type'] == 'landlord') {?>
-<div class="cart-container">
-    <h2  class="cart-heading" style="color: black;">My Ads</h2>
-    <!-- Add your cart content here -->
-    <section class="property" id="property">
-        <div class="container">
-            <ul class="property-list has-scrollbar" style="overflow-x: auto;">
+    <!-- Card 1-->
+    <div class="cart-container">
+        <h2  class="cart-heading" style="color: black;">My Ads</h2>
+        <section class="property" id="property">
+            <div class="container">
 
                 <?php
                     $adDetails = DbUtil::getPost($_SESSION['user_id']);
 
                     foreach($adDetails as $adDetail){
-                        $imagePaths = DbUtil::getImagePath($adDetail->id);
+                        $imagePaths = DbUtil::getImagePath($adDetail->getId());
                 ?>
-                        <!--Card 1-->
-                        <li>
-                            <div class="property-card"  style="background-color: #ebf9eb;">
-                                <div class="dropdown dropdown-right" style="margin-left: 290px;">
-                                    <button class="dropbtn">...</button>
-                                    <div class="dropdown-content">
-                                        <a href="card.php?id=<?php echo $adDetail->id?>">Edit Post</a>
-                                        <a href="#" 
-                                            onclick="if (confirm('Are you sure you want to delete this post?')) { window.location.href = '../controller/deletePostController.php?id=<?php echo $adDetail->id?>'; }">
-                                            Delete Post
-                                        </a>
-                                    </div>
+                    <div class="card">
+                        <img src="../../assets/images/<?php echo $imagePaths[0]->getImage() ?>" alt="Property Image">
+                        <div class="card-content">
+                            <div class="title"><?php echo $adDetail->getLocation()?></div>
+                            <div style="display: flex; ">
+                                <div style=" width: 100px;">
+                                    <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds: <?php echo $adDetail->getBed()?> </div></div>
+                                    <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: <?php echo $adDetail->getBath()?> </div></div>
+                                    <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: <?php echo $adDetail->getId()?> </div></div>                           
                                 </div>
-                                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                                    <img src="../../assets/images/<?php echo $imagePaths[0]->image ?>" width="800" height="533" loading="lazy"
-                                    alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
-                                </figure>
-                                <div class="card-content">
-                                    <h3 class="h3">
-                                        <a href="#" class="card-title"><?php echo $adDetail->location?></a>
-                                    </h3>
-                                    <ul class="card-list">
-                                        <li class="card-item">
-                                            <div class="item-icon">
-                                                <ion-icon name="bed-outline"></ion-icon>
-                                            </div>
-                                            <span class="item-text"><?php echo $adDetail->bed?> Beds</span>
-                                        </li>
-                                        <li class="card-item">
-                                            <div class="item-icon">
-                                                <ion-icon name="man-outline"></ion-icon>
-                                            </div>
-                                            <span class="item-text"><?php echo $adDetail->bath?> Baths</span>
-                                        </li>
-                                    </ul>
-                                    <div class="card-meta">
-                                        <div>
-                                            <span class="meta-title">Price</span>
-                                            <span class="meta-text">Rs.<?php echo $adDetail->price?></span><br>
-                                            <span class="meta-title">Status</span>
-                                            <span class="meta-text"><?php echo $adDetail->status?></span><br>
-                                            <span class="meta-title">Ad Id</span>
-                                            <input type="text" value="<?php echo $adDetail->id?>" name="adId">
-                                        </div>
+                                <div class="vertical-line"></div>
+                    
+                                <div style=" margin-left: 40px; margin-top: 30px;">
+                                    <div style="font-size: 24px;">Rs.<?php echo $adDetail->getPrice()?></div>
+                                    <div class="status" style="margin-top: 40px; margin-left: 0px;">Status: <?php echo $adDetail->getStatus()?></div>                            
+                                    <div>
+                                        <?php if($adDetail->getRejectReason() !== null){ ?>
+                                        <p style="color: red; font-size: 1.3rem;">Reason: <?php echo $adDetail->getRejectReason()?></p>
+                                        <?php } ?>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
-                <?php
-                    }
-                ?>
-                
-                <br>
-            </ul>
-        </div>
-    </section>
-</div>
-<?php } ?>
-
-
-<!--2024/03/10-->
- <!-- Card 1-->
- <div class="cart-container">
-        <h2  class="cart-heading" style="color: black;">My Ads</h2>
-    <section class="property" id="property">
-        <div class="container">
-
-            <div class="card">
-                <img src="property-1.jpg" alt="Property Image">
-                <div class="card-content">
-                    <div class="title">Property Title Lorem.</div>
-                    <div style="display: flex; ">
-                        <div style=" width: 100px;">
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds:  3 </div></div>
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: 2 </div></div>
-                            <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: 2 </div></div>
-                           
-                        </div>
-                        <div class="vertical-line"></div>
-            
-                        <div style=" margin-left: 40px; margin-top: 30px;">
-                            <div style="font-size: 24px;">Rs.250,000</div>
-                            <div class="status" style="margin-top: 40px; margin-left: 0px;">For Sale
-                               
-                            </div>
-                            
-                            <div>
-                                <p style="color: red; font-size: 1.3rem;">*Lorem ipsum dolor sit </p>
+                                </div>                        
+                            </div>               
+                            <div class="action-buttons">
+                                <a href="editcard.php?id=<?php echo $adDetail->getId()?>&landlord=<?php echo $adDetail->getLandlord() ?>"><button class="Change-button">Edit Ad</button></a>
+                                <button class="delete-button"
+                                    onclick="if (confirm('Are you sure you want to delete this post?')) { window.location.href = '../controller/deletePostController.php?id=<?php echo $adDetail->getId()?>'; }">
+                                            Delete Ad
+                                </button>
                             </div>
                         </div>
-                        
                     </div>
-               
-                    <div class="action-buttons">
-                        <button class="Change-button" onclick="changeAds()" >Change Ads</button>
-                        <button class="delete-button" onclick="deleteAds()">Delete Ads</button>
-                    </div>
-                </div>
+                <?php } ?>                  
             </div>
-
-            <!--Card 2-->
-
-            <div class="card">
-                <img src="property-1.jpg" alt="Property Image">
-                <div class="card-content">
-                    <div class="title">Property Title Lorem.</div>
-                    <div style="display: flex; ">
-                        <div style=" width: 100px;">
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="bed-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Beds:  3 </div></div>
-                            <div class="beds-baths" style="display: flex;"><ion-icon name="man-outline"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;"> Baths: 2 </div></div>
-                            <div class="beds-baths" style="display: flex;"> <ion-icon name="key"></ion-icon> <div style="margin-left: 10px; margin-top: 15px;">Ad ID: 2 </div></div>
-                           
-                        </div>
-                        <div class="vertical-line"></div>
-            
-                        <div style=" margin-left: 40px; margin-top: 30px;">
-                            <div style="font-size: 24px;">Rs.250,000</div>
-                            <div class="status" style="margin-top: 40px; margin-left: 0px;">For Sale
-                               
-                            </div>
-                            
-                            <div>
-                                <p style="color: red; font-size: 1.3rem;">*Lorem ipsum dolor sit </p>
-                            </div>
-                        </div>
-                        
-                    </div>
-               
-                    <div class="action-buttons">
-                        <button class="Change-button" onclick="changeAds()" >Change Ads</button>
-                        <button class="delete-button" onclick="deleteAds()">Delete Ads</button>
-                    </div>
-                </div>
-            </div>
-
-          
-           
-        </div>
-    </section>
+        </section>
     </div>
-
-<!-- Notification Panel -->
-<!-- <div class="notification-panel" id="notificationPanel">
-    <p id="notificationMessage"></p>
-    <button onclick="closeNotification()">Close</button>
-</div> -->
+<?php } ?>
 
 
 <?php include_once('footer.html') ?>
@@ -539,6 +457,13 @@ href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <script>
+document.getElementById("deleteForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to delete this account?")) {
+        this.submit();
+    }
+});
+
 function showProfile() {
     document.getElementById("profileInfo").style.display = "block";
     document.getElementById("changePassword").style.display = "none";

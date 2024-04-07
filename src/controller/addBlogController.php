@@ -12,7 +12,8 @@
         $fileUploadSuccess = false;
 
         //inserting images
-        $target_file = $target_dir . basename($_FILES["blogimage"]["name"]);
+        $originalFileName = $_FILES["blogimage"]["name"];
+        $target_file = $target_dir . basename($originalFileName);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $check = getimagesize($_FILES["blogimage"]["tmp_name"]);
 
@@ -25,9 +26,15 @@
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            echo "<script>alert('Sorry, file already exists.')</script>";
-            echo "<script>window.setTimeout(function(){window.location.href='../view/addblogpost.php'}, 500);</script>";
-            $uploadOk = 0;
+            // echo "<script>alert('Sorry, file already exists.')</script>";
+            // echo "<script>window.setTimeout(function(){window.location.href='../view/addblogpost.php'}, 500);</script>";
+            // $uploadOk = 0;
+            $counter = 1;
+            while(file_exists($target_file)){
+                $newFileName = pathinfo($originalFileName, PATHINFO_FILENAME) . "_" . $counter . "." . $imageFileType;
+                $target_file = $target_dir . $newFileName;
+                $counter++;
+            }
         }
 
         // Check file size
@@ -51,7 +58,7 @@
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["blogimage"]["tmp_name"], $target_file)) {
-                $fileName = htmlspecialchars(basename($_FILES["blogimage"]["name"]));
+                $fileName = htmlspecialchars(basename($target_file));
                 // echo "The file ". $fileName . " has been uploaded. <br>";
                 $fileUploadSuccess = true;
 

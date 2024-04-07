@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             session_destroy();
             header('Location: ../view/index.php');
         }else{
-            echo "<script>alert('Could not delete account. Try again')</script>";
+            echo "<script>alert('Incorrect password')</script>";
             echo "<script>window.setTimeout(function(){window.location.href='../view/profile.php'}, 500);</script>";
         }
     }else{
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             session_destroy();
             header('Location: ../view/index.php');
         }else{
-            echo "<script>alert('Could not delete account. Try again')</script>";
+            echo "<script>alert('Incorrect password')</script>";
             echo "<script>window.setTimeout(function(){window.location.href='../view/profile.php'}, 500);</script>";
         }
     }
