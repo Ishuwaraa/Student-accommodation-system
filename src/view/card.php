@@ -147,7 +147,7 @@
       ?>
 
             <div style="text-align: right;  right: 0; bottom: 0; display: flex;">
-              <a href="../controller/studentRequestController.php?id=<?php echo $id ?>&std=<?php echo $std_id ?>&landlord=<?php echo $landlord_id ?>" style="margin-right: 5px;" class="btn btn-secondary">Request Property</a>
+              <a href="../controller/studentRequestController.php?id=<?php echo $id ?>&std=<?php echo $std_id ?>&landlord=<?php echo $landlord_id ?>" style="margin-right: 5px;" class="btn btn-secondary">Reserve Property</a>
             </div>
 
       <?php 
